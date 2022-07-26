@@ -1,0 +1,4 @@
+This is a Brave Rewards publisher verification file.
+
+Domain: vijay2249.github.io
+Token: 8e71bfa456ca17c7e744e7c841a6451ac7cda9c8df5351abf6b5134adc50e028
