@@ -4,11 +4,11 @@ AOS.init();
 
 const moocs = document.querySelector(".moocs");
 const moocscards = [
-  {
-    title: "The Bits and Bytes of Computer Networking",
-    cardImage: "assets/images/education-page/coursera2.svg",
-    moocLink: "https://www.coursera.org/search?query=bits%20and%20bytes%20of%20computer%20networking",
-  },
+  // {
+  //   title: "The Bits and Bytes of Computer Networking",
+  //   cardImage: "assets/images/education-page/coursera2.svg",
+  //   moocLink: "https://www.coursera.org/search?query=bits%20and%20bytes%20of%20computer%20networking",
+  // },
   {
     title: "Machine Learning",
     cardImage: "assets/images/education-page/coursera2.svg",
@@ -19,20 +19,15 @@ const moocscards = [
     cardImage: "assets/images/education-page/coursera2.svg",
     moocLink: "https://www.coursera.org/search?query=technical%20support%20fundamentals",
   },
-  {
-    title: "Introduction to HTML 5",
-    cardImage: "assets/images/education-page/coursera2.svg",
-    moocLink: "https://www.coursera.org/search?query=intro%20to%20html%205",
-  },
+  // {
+  //   title: "Introduction to HTML 5",
+  //   cardImage: "assets/images/education-page/coursera2.svg",
+  //   moocLink: "https://www.coursera.org/search?query=intro%20to%20html%205",
+  // },
   {
     title: "Complete Web Developer bootcamp",
     cardImage: "assets/images/education-page/udemy.svg",
     moocLink: "https://www.udemy.com/course/the-complete-web-development-bootcamp/",
-  },
-  {
-    title: "Introduction to BlockChain",
-    cardImage: "assets/images/education-page/coursera2.svg",
-    moocLink: "https://www.coursera.org/learn/blockchain-basics",
   },
   {
     title: "React - The Complete Guide",

@@ -9,7 +9,9 @@ const exp = [
     cardImage: "assets/images/experience-page/johndeere.jpg", //change it to John Deere
     place: "John Deere",
     time: "(May, 2022 - July 2022)",
-    desp: "<li>Worked on automating the testing tools that is custom built.</li> <li>Poineered the automated testing.</li> <li>Created a framework that tests all the automated testing on the application.</li>",
+    desp: "<li>Worked on automating the testing tools that is custom built.</li> \
+           <li>Created a framework that tests all the automated testing on the application.</li>\
+           <li>Key features added Logs, Test Script upon tool, created in Python language",
   },
   
 ];
@@ -52,13 +54,15 @@ const volunteershipcards = [
     title: "Open Source Contributions",
     cardImage: "assets/images/experience-page/booktracker.jpg",
     place: "Open Source(Github)",
-    description: 'Worked on a website that keeps track of the books you read, about to read, etc.. which contains all the login and public profiles and private option on profiles'
+    description: 'Worked on a website that keeps track of the books you read, about to read, etc.. which contains all the login and public profiles and private option on profiles',
+    link: "https://github.com/zero-to-mastery/book-tracker",
   },
   {
     title: "E-xchange",
     cardImage: "assets/images/project-page/ExChange.jpeg",
     place: "Open Source(Github)",
     description: "A E-xChange service within campus to re-use/donate/sell/buy from peer to peer with in campus(college)",
+    link: "https://github.com/saivivek321/E-xchange-Project",
   },
 ];
 
@@ -86,17 +90,25 @@ document.addEventListener("DOMContentLoaded", showCards);
 const hackathonsection = document.querySelector(".hackathon-section");
 const mentor = [
   {
-    title: "CTF Challenge",
+    title: "NITW Cybsec CTF's",
     subtitle: "Participation",
     image: "assets/images/experience-page/ctf.jpg",
     desp: "Like to participate in CTF's",
+    link: "https://www.cybsec.in/phantom"
   },
+  {
+    title: "TheCyberhub weekly CTF's",
+    subtitle: "Participation and walkthroughs",
+    image: "assets/images/experience-page/Thecyberworld.png",
+    deps: "participation and guiding peers in the process and creating walkthroughs for ctfs",
+    link: "https://thecyberhub.org/"
+  }
 ];
 
 const showCards3 = () => {
   let output = "";
   mentor.forEach(
-    ({ title, image, subtitle, desp }) =>
+    ({ title, image, subtitle, desp, link }) =>
       (output += `  
       <div class="blog-slider__item swiper-slide">
         <div class="blog-slider__img">
@@ -106,7 +118,7 @@ const showCards3 = () => {
           <div class="blog-slider__title">${title}</div>
           <span class="blog-slider__code">${subtitle}</span>
           <div class="blog-slider__text">${desp}</div>
-          <a href="https://www.cybsec.in/phantom" class="blog-slider__button">Read More</a>   
+          <a href="${link}" class="blog-slider__button">Read More</a>   
         </div>
       </div>
       `)

@@ -1,1 +1,0 @@
-Checkout the branch and the aim of the branch before just making the changes required
