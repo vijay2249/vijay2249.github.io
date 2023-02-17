@@ -100,7 +100,7 @@ const mentor = [
     title: "TheCyberhub weekly CTF's",
     subtitle: "Participation and walkthroughs",
     image: "assets/images/experience-page/Thecyberworld.png",
-    deps: "participation and guiding peers in the process and creating walkthroughs for ctfs",
+    desp: "participation and guiding peers in the process and creating walkthroughs for ctfs",
     link: "https://thecyberhub.org/"
   }
 ];
