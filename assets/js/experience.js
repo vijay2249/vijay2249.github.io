@@ -94,7 +94,8 @@ const mentor = [
     subtitle: "Participation",
     image: "assets/images/experience-page/ctf.jpg",
     desp: "Like to participate in CTF's",
-    link: "https://www.cybsec.in/phantom"
+    // link: "https://www.cybsec.in"
+    link: "https://github.com/CybSec-NITW"
   },
   {
     title: "TheCyberhub weekly CTF's",

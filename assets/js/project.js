@@ -10,7 +10,7 @@ const projects = [
     cardImage: "assets/images/project-page/ExChange.jpeg",
     description: "A E-xChange service within campus to re-use/donate/sell/buy from peer to peer with in campus(college)",
     tagimg: "https://cdn.iconscout.com/icon/free/png-512/react-1-282599.png",
-    Previewlink: "",
+    Previewlink: "https://github.com/vijay2249/E-xchange",
     Githublink: "https://github.com/saivivek321/E-xchange-Project",
   },
   {
@@ -18,8 +18,8 @@ const projects = [
     cardImage: "assets/images/project-page/booktracker.jpg",
     description: "Tracks the amount of books that you've read, the ones you want to read and the progress on the ones you're reading",
     tagimg: "https://image.flaticon.com/icons/png/512/643/643350.png",
-    Previewlink: "",
-    Githublink: "https://zero-to-mastery.github.io/book-tracker/",
+    Githublink: "https://github.com/zero-to-mastery/book-tracker/",
+    Previewlink: "https://zero-to-mastery.github.io/book-tracker/",
   },
   {
     title: "Smart-Brain",
@@ -34,7 +34,7 @@ const projects = [
     cardImage: "assets/images/project-page/exercise.jpg",
     description: "A simple Python script to delete/detect the duplicate files in a folder.",
     tagimg: "https://miro.medium.com/max/2800/0*U2DmhXYumRyXH6X1.png",
-    Previewlink: "",
+    Previewlink: "https://github.com/vijay2249/stress-relief",
     Githublink: "https://github.com/vijay2249/stress-relief",
   },
 ];
