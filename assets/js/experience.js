@@ -6,13 +6,20 @@ const experiencecards = document.querySelector(".experience-cards");
 const exp = [
   {
     title: "Software Development Intern",
-    cardImage: "assets/images/experience-page/johndeere.jpg", //change it to John Deere
+    cardImage: "assets/images/experience-page/johndeere.jpg",
     place: "John Deere",
     time: "(May, 2022 - July 2022)",
     desp: "<li>Worked on automating the testing tools that is custom built.</li> \
            <li>Created a framework that tests all the automated testing on the application.</li>\
            <li>Key features added Logs, Test Script upon tool, created in Python language",
   },
+  {
+    title: "Software Developer",
+    cardImage: "assests/images/experience-page/amdocs.png",
+    place: "Amdocs",
+    time: "(Aug 2023 - Ongoing)",
+    desp: "<li>Building applications based on SpringBoot framework in Java</li>",
+  }
   
 ];
 

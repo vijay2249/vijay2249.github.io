@@ -6,18 +6,10 @@ const projectcards = document.querySelector(".projectcards");
 // Array of object for projects
 const projects = [
   {
-    title: "E-xchange",
-    cardImage: "assets/images/project-page/ExChange.jpeg",
-    description: "A E-xChange service within campus to re-use/donate/sell/buy from peer to peer with in campus(college)",
-    tagimg: "https://cdn.iconscout.com/icon/free/png-512/react-1-282599.png",
-    Previewlink: "https://github.com/vijay2249/E-xchange",
-    Githublink: "https://github.com/saivivek321/E-xchange-Project",
-  },
-  {
     title: "Book-Tracker",
     cardImage: "assets/images/project-page/booktracker.jpg",
     description: "Tracks the amount of books that you've read, the ones you want to read and the progress on the ones you're reading",
-    tagimg: "https://image.flaticon.com/icons/png/512/643/643350.png",
+    // tagimg: "https://image.flaticon.com/icons/png/512/643/643350.png",
     Githublink: "https://github.com/zero-to-mastery/book-tracker/",
     Previewlink: "https://zero-to-mastery.github.io/book-tracker/",
   },
@@ -25,7 +17,7 @@ const projects = [
     title: "Smart-Brain",
     cardImage: "assets/images/project-page/smart-brain.png",
     description: "Built using React.js, recognizes faces in provided image link using Clarifai api, Also contains the backend server to store the login data and also number of faces recognized in the images provided",
-    tagimg: "https://cdn.iconscout.com/icon/free/png-512/react-1-282599.png",
+    // tagimg: "https://cdn.iconscout.com/icon/free/png-512/react-1-282599.png",
     Previewlink: "https://vijay2249.github.io/Smart-Brain/",
     Githublink: "https://github.com/vijay2249/Smart-Brain",
   },
@@ -33,10 +25,35 @@ const projects = [
     title: "stress-relief(Clean Duplicate Files)",
     cardImage: "assets/images/project-page/exercise.jpg",
     description: "A simple Python script to delete/detect the duplicate files in a folder.",
-    tagimg: "https://miro.medium.com/max/2800/0*U2DmhXYumRyXH6X1.png",
+    // tagimg: "https://miro.medium.com/max/2800/0*U2DmhXYumRyXH6X1.png",
     Previewlink: "https://github.com/vijay2249/stress-relief",
     Githublink: "https://github.com/vijay2249/stress-relief",
   },
+  {
+    title: "My Notes on languages and Tools that I am learning",
+    cardImage: "assests/images/project-page/notes.png",
+    description: "This repo contains my notes on all concepts that I learned for each language and tools",
+    Previewlink: "https://github.com/vijay2249/BoringNotes",
+    Githublink: "https://github.com/vijay2249/BoringNotes",
+    // tagimg: ""
+  },
+  {
+    title: "Playground repos - to learn languages and tools used in daily life",
+    cardImage: "assets/images/project-page/playground.jpg",
+    description: "These repos contains the learning process of mastering the languages and tools I am doing and are completely opensource for all to add/break/support all the work. Break and learn being the motto for it.",
+    // tagimg: ""
+    Previewlink: "https://github.com/vijay2249?tab=repositories&q=playground&type=&language=&sort=",
+    Githublink: "https://github.com/vijay2249?tab=repositories&q=playground&type=&language=&sort="
+  },
+  {
+    title: "E-xchange",
+    cardImage: "assets/images/project-page/ExChange.jpeg",
+    description: "A E-xChange service within campus to re-use/donate/sell/buy from peer to peer with in campus(college)",
+    tagimg: "https://cdn.iconscout.com/icon/free/png-512/react-1-282599.png",
+    Previewlink: "https://github.com/vijay2249/E-xchange",
+    Githublink: "https://github.com/saivivek321/E-xchange-Project",
+  },
+
 ];
 
 // function for rendering project cards data
