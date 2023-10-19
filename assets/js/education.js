@@ -5,14 +5,14 @@ AOS.init();
 const moocs = document.querySelector(".moocs");
 const moocscards = [
   {
-    title: "The Bits and Bytes of Computer Networking",
-    cardImage: "assets/images/education-page/coursera2.svg",
-    moocLink: "https://www.coursera.org/learn/computer-networking",
-  },
-  {
     title: "Technical Support Fundamentals",
     cardImage: "assets/images/education-page/coursera2.svg",
     moocLink: "https://www.coursera.org/learn/technical-support-fundamentals",
+  },
+  {
+    title: "The Bits and Bytes of Computer Networking",
+    cardImage: "assets/images/education-page/coursera2.svg",
+    moocLink: "https://www.coursera.org/learn/computer-networking",
   },
   {
     title: "Operating Systems and You: Becoming a Power User",
@@ -25,12 +25,12 @@ const moocscards = [
     moocLink: "https://www.coursera.org/search?query=machine%20learning",
   },
   {
-    title: "Complete Web Developer bootcamp - Angela Yu",
+    title: "Complete Web Developer bootcamp ~ Angela Yu",
     cardImage: "assets/images/education-page/udemy.svg",
     moocLink: "https://www.udemy.com/course/the-complete-web-development-bootcamp/",
   },
   {
-    title: "React - The Complete Guide - Maximilian",
+    title: "React - The Complete Guide ~ Maximilian",
     cardImage: "assets/images/education-page/udemy.svg",
     moocLink: "https://www.udemy.com/course/react-the-complete-guide-incl-redux/",
   },

@@ -31,7 +31,7 @@ const projects = [
   },
   {
     title: "My Notes on languages and Tools that I am learning",
-    cardImage: "assests/images/project-page/notes.png",
+    cardImage: "assets/images/project-page/notes.png",
     description: "This repo contains my notes on all concepts that I learned for each language and tools",
     Previewlink: "https://github.com/vijay2249/BoringNotes",
     Githublink: "https://github.com/vijay2249/BoringNotes",

@@ -15,7 +15,7 @@ const exp = [
   },
   {
     title: "Software Developer",
-    cardImage: "assests/images/experience-page/amdocs.png",
+    cardImage: "assets/images/experience-page/amdocs.png",
     place: "Amdocs",
     time: "(Aug 2023 - Ongoing)",
     desp: "<li>Building applications based on SpringBoot framework in Java</li>",
