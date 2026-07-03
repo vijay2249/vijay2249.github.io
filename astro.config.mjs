@@ -22,7 +22,7 @@ import pagefind from 'astro-pagefind';
 
 export default defineConfig({
   site: 'https://portfolio.vijaynelakurthi.in',
-  // base: '/',
+  base: '/',
   trailingSlash: 'ignore',
   integrations: [
     sitemap({
