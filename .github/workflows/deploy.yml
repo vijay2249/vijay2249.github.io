@@ -27,6 +27,10 @@ jobs:
           # build-cmd: pnpm run build # The command to run to build your site. Runs the package build script/task by default. (optional)
         # env:
           # PUBLIC_POKEAPI: 'https://pokeapi.co/api/v2' # Use single quotation marks for the variable value. (optional)
+      - name: Install
+        shell: bash
+        working-directory: ${{ inputs.path }}
+        run : npm ci --legacy-peer-deps
 
   deploy:
     needs: build
