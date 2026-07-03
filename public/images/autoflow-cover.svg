@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0e14"/>
+      <stop offset="1" stop-color="#14202a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="980" cy="540" r="240" fill="#3ddc97" opacity="0.10"/>
+  <g font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+    <text x="90" y="150" font-size="48" font-weight="800" fill="#e6e9ef">Visualizing test flows</text>
+    <text x="90" y="206" font-size="48" font-weight="800" fill="#3ddc97">across two IDEs</text>
+    <text x="90" y="258" font-size="24" fill="#9aa6bd">dependsOnMethods &#8594; a graph you can read</text>
+  </g>
+  <g font-family="ui-monospace, Menlo, monospace" font-size="16" transform="translate(120, 330)">
+    <line x1="80" y1="40" x2="300" y2="40" stroke="#3ddc97" stroke-width="3"/>
+    <line x1="80" y1="40" x2="300" y2="160" stroke="#3ddc97" stroke-width="3"/>
+    <line x1="380" y1="40" x2="600" y2="100" stroke="#8ea2ff" stroke-width="3"/>
+    <line x1="380" y1="160" x2="600" y2="100" stroke="#ff5f57" stroke-width="3"/>
+    <g>
+      <rect x="0" y="18" width="80" height="44" rx="10" fill="#151b28" stroke="#3ddc97"/>
+      <text x="40" y="45" text-anchor="middle" fill="#3ddc97">login</text>
+    </g>
+    <g>
+      <rect x="300" y="18" width="80" height="44" rx="10" fill="#151b28" stroke="#28c840"/>
+      <text x="340" y="45" text-anchor="middle" fill="#28c840">order</text>
+    </g>
+    <g>
+      <rect x="300" y="138" width="80" height="44" rx="10" fill="#151b28" stroke="#ff5f57"/>
+      <text x="340" y="165" text-anchor="middle" fill="#ff5f57">pay</text>
+    </g>
+    <g>
+      <rect x="600" y="78" width="90" height="44" rx="10" fill="#151b28" stroke="#232c3d"/>
+      <text x="645" y="105" text-anchor="middle" fill="#9aa6bd">ship</text>
+    </g>
+    <text x="0" y="250" fill="#6b7689" font-size="14">pass / fail / duration overlaid from thelast run</text>
+  </g>
+</svg>

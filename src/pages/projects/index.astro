@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ProjectCard from '../../components/ProjectCard.astro';
+import { getProjects } from '../../lib/projects';
+import { SOCIALS } from '../../site.config';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (href: string) => `${base.replace(/\/$/, '')}${href}`;
+
+const projects = await getProjects();
+const github = SOCIALS.find((s) => s.label === 'GitHub')?.href ?? '#';
+const wdt = SOCIALS.find((s) => s.label === 'WeDontTrack')?.href ?? '#';
+---
+
+<BaseLayout
+  title="Projects"
+  description="Developer platforms, open-source apps, and infrastructure I've designed, built, and shipped."
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Projects</p>
+      <h1 class="page-title">Things I designed, built &amp; shipped</h1>
+      <p class="muted page-lead">
+        A mix of developer platforms, open-source apps, and infrastructure. Most are backend or developer-experience tools.
+      </p>
+
+      <div class="grid grid-2">
+        {
+          projects.map((p) => (
+            <ProjectCard
+              href={withBase(`/projects/${p.id}`)}
+              title={p.data.title}
+              tagline={p.data.tagline}
+              stack={p.data.stack}
+              status={p.data.status}
+              year={p.data.year}
+              highlights={p.data.highlights}
+              repo={p.data.repo}
+              website={p.data.website}
+            />
+          ))
+        }
+      </div>
+
+      <p class="more">
+        <a href={wdt} target="_blank" rel="noopener">More open source at WeDontTrack →</a>
+        <span class="dot">·</span>
+        <a href={github} target="_blank" rel="noopener">Everything on GitHub →</a>
+      </p>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin: 0 0 0.75rem;
+  }
+  .page-lead {
+    max-width: 620px;
+    margin: 0 0 2.5rem;
+    font-size: 1.05rem;
+  }
+  .more {
+    margin-top: 2.5rem;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    align-items: center;
+    font-weight: 600;
+    font-size: 0.92rem;
+  }
+  .more .dot {
+    color: var(--text-dim);
+  }
+</style>

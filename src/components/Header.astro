@@ -1,0 +1,166 @@
+---
+import { NAV, SITE } from '../site.config';
+import ThemeToggle from './ThemeToggle.astro';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (href: string) => href === '/' ? base : `${base.replace(/\/$/, '')}${href}`;
+
+const current = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isActive = (href: string) => {
+  const target = withBase(href).replace(/\/$/, '') || '/';
+  if (target === (base.replace(/\/$/, '') || '/')) return current === target;
+  return current === target || current.startsWith(target + '/');
+};
+---
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a class="brand" href={base}>
+      <span class="brand-mark">{SITE.shortName}</span>
+      <span class="brand-name">{SITE.name}</span>
+    </a>
+
+    <button
+      class="nav-toggle"
+      id="nav-toggle"
+      type="button"
+      aria-label="Toggle navigation"
+      aria-expanded="false"
+      aria-controls="primary-nav"
+    >
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav class="nav" id="primary-nav" aria-label="Primary">
+      {
+        NAV.map((item) => (
+          <a
+            href={withBase(item.href)}
+            class:list={['nav-link', { active: isActive(item.href) }]}
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <ThemeToggle />
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    background: color-mix(in srgb, var(--bg) 82%, transparent);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border);
+  }
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    color: var(--text);
+    font-weight: 700;
+  }
+  .brand:hover {
+    text-decoration: none;
+  }
+  .brand-mark {
+    display: inline-grid;
+    place-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--brand);
+    color: var(--brand-ink);
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+  }
+  .brand-name {
+    font-size: 1rem;
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+  }
+  .nav-link {
+    color: var(--text-muted);
+    font-size: 0.92rem;
+    font-weight: 500;
+  }
+  .nav-link:hover {
+    color: var(--text);
+    text-decoration: none;
+  }
+  .nav-link.active {
+    color: var(--brand);
+  }
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    gap: 5px;
+    width: 40px;
+    height: 40px;
+    padding: 0 9px;
+    background: transparent;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+  .nav-toggle span {
+    height: 2px;
+    width: 100%;
+    background: var(--text);
+    border-radius: 2px;
+    transition: transform 0.2s ease, opacity 0.2s ease;
+  }
+
+  @media (max-width: 720px) {
+    .nav-toggle {
+      display: flex;
+    }
+    .nav {
+      position: absolute;
+      top: 64px;
+      left: 0;
+      right: 0;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 0.25rem;
+      padding: 0.75rem 1.25rem 1.1rem;
+      background: var(--bg-elevated);
+      border-bottom: 1px solid var(--border);
+      display: none;
+    }
+    .nav.open {
+      display: flex;
+    }
+    .nav-link {
+      padding: 0.5rem 0;
+      width: 100%;
+      font-size: 1rem;
+    }
+  }
+</style>
+
+<script is:inline>
+  (() => {
+    const toggle = document.getElementById('nav-toggle');
+    const nav = document.getElementById('primary-nav');
+    if (!toggle || !nav) return;
+    toggle.addEventListener('click', () => {
+      const open = nav.classList.toggle('open');
+      toggle.setAttribute('aria-expanded', String(open));
+    });
+  })();
+</script>

@@ -1,0 +1,105 @@
+---
+// Progressive enhancement: makes wide prose diagrams/screenshots readable on
+// mobile (horizontal scroll instead of shrinking) and tap-to-zoom into a
+// full-size lightbox. No dependencies; degrades to plain images without JS.
+---
+
+<div
+  class="lightbox"
+  id="diagram-lightbox"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Diagram viewer"
+  hidden
+>
+  <button class="lightbox-close" type="button" aria-label="Close diagram">&times;</button>
+  <div class="lightbox-stage">
+    <img class="lightbox-img" alt="" />
+  </div>
+  <p class="lightbox-hint">Drag to pan &middot; tap outside or press Esc to close</p>
+</div>
+
+<script>
+  (() => {
+    const imgs = Array.from(
+      document.querySelectorAll<HTMLImageElement>('.prose img'),
+    );
+    const lb = document.getElementById('diagram-lightbox');
+    if (!imgs.length || !lb) return;
+
+    const lbImg = lb.querySelector<HTMLImageElement>('.lightbox-img');
+    const stage = lb.querySelector<HTMLElement>('.lightbox-stage');
+    const closeBtn = lb.querySelector<HTMLButtonElement>('.lightbox-close');
+    if (!lbImg || !stage || !closeBtn) return;
+
+    let lastFocused: HTMLElement | null = null;
+
+    const isWide = (img: HTMLImageElement) => {
+      const src = (img.getAttribute('src') || '').toLowerCase();
+      if (src.endsWith('.svg')) return true;
+      return (img.naturalWidth || 0) >= 700;
+    };
+
+    const wrap = (img: HTMLImageElement) => {
+      if (img.closest('.diagram-scroll')) return;
+      const div = document.createElement('div');
+      div.className = 'diagram-scroll';
+      const p = img.parentElement;
+      if (p && p.tagName === 'P' && p.childNodes.length === 1) {
+        p.replaceWith(div);
+      } else {
+        img.replaceWith(div);
+      }
+      div.appendChild(img);
+    };
+
+    const open = (img: HTMLImageElement) => {
+      lastFocused = document.activeElement as HTMLElement;
+      lbImg.src = img.currentSrc || img.src;
+      lbImg.alt = img.getAttribute('alt') || '';
+      lb.hidden = false;
+      document.body.classList.add('lightbox-open');
+      stage.scrollTo(0, 0);
+      closeBtn.focus();
+    };
+
+    const close = () => {
+      lb.hidden = true;
+      lbImg.removeAttribute('src');
+      document.body.classList.remove('lightbox-open');
+      if (lastFocused?.focus) lastFocused.focus();
+    };
+
+    imgs.forEach((img) => {
+      const process = () => {
+        if (isWide(img)) wrap(img);
+      };
+      if (img.complete) process();
+      else img.addEventListener('load', process, { once: true });
+
+      img.classList.add('zoomable');
+      img.setAttribute('role', 'button');
+      img.setAttribute('tabindex', '0');
+      img.setAttribute(
+        'aria-label',
+        `${img.getAttribute('alt') || 'Diagram'} — tap to zoom`,
+      );
+      img.addEventListener('click', () => open(img));
+      img.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          open(img);
+        }
+      });
+    });
+
+    closeBtn.addEventListener('click', close);
+    lb.addEventListener('click', (e) => {
+      const t = e.target as HTMLElement;
+      if (t === lb || t.classList.contains('lightbox-stage')) close();
+    });
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && !lb.hidden) close();
+    });
+  })();
+</script>

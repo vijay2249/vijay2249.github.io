@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0e14"/>
+      <stop offset="1" stop-color="#101826"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="240" cy="160" r="220" fill="#8ea2ff" opacity="0.10"/>
+  <g font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+    <text x="90" y="150" font-size="48" font-weight="800" fill="#e6e9ef">DNS record types</text>
+    <text x="90" y="206" font-size="48" font-weight="800" fill="#8ea2ff">and what they do</text>
+    <text x="90" y="258" font-size="24" fill="#9aa6bd">the internet's phone book, one record at a time</text>
+  </g>
+  <g transform="translate(120, 320)" font-family="ui-monospace, Menlo, monospace" font-size="20">
+    <rect x="0" y="0" width="960" height="280" rx="14" fill="#0b0e14" stroke="#232c3d"/>
+    <text x="30" y="56" fill="#3ddc97">A</text>     <text x="120" y="56" fill="#9aa6bd">example.com  &#8594;  192.0.2.1</text>
+    <text x="30" y="104" fill="#3ddc97">AAAA</text>  <text x="120" y="104" fill="#9aa6bd">example.com  &#8594;  2001:db8::1</text>
+    <text x="30" y="152" fill="#ffb454">CNAME</text> <text x="120" y="152" fill="#9aa6bd">www        &#8594;  example.com</text>
+    <text x="30" y="200" fill="#8ea2ff">MX</text>    <text x="120" y="200" fill="#9aa6bd">example.com  &#8594;  mail.example.com</text>
+    <text x="30" y="248" fill="#ff5f57">TXT</text>   <text x="120" y="248" fill="#9aa6bd">v=spf1 include:_spf ...</text>
+  </g>
+</svg>

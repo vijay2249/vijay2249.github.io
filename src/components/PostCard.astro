@@ -1,0 +1,133 @@
+---
+import { CATEGORIES, type CategoryKey } from '../site.config';
+import { formatShortDate } from '../lib/posts';
+
+interface Props {
+  href: string;
+  title: string;
+  description: string;
+  date: Date;
+  category: CategoryKey;
+  tags?: string[];
+  readMins?: number;
+  cover?: string;
+  coverAlt?: string;
+}
+
+const {
+  href,
+  title,
+  description,
+  date,
+  category,
+  tags = [],
+  readMins,
+  cover,
+  coverAlt,
+} = Astro.props;
+
+const base = import.meta.env.BASE_URL;
+const asset = (p?: string) => p ? `${base.replace(/\/$/, '')}${p.startsWith('/') ? p : `/${p}`}` : undefined;
+const coverSrc = asset(cover);
+const catLabel = CATEGORIES[category]?.label ?? category;
+---
+
+<a
+  class="post"
+  href={href}
+  data-title={title.toLowerCase()}
+  data-tags={tags.join(' ').toLowerCase()}
+  data-desc={description.toLowerCase()}
+  data-category={category}
+>
+  {
+    coverSrc && (
+      <div class="cover">
+        <img src={coverSrc} alt={coverAlt ?? ''} loading="lazy" />
+      </div>
+    )
+  }
+  <div class="body">
+    <div class="meta">
+      <span class:list={['pill', `cat-${category}`]}>{catLabel}</span>
+      <time datetime={date.toISOString()}>{formatShortDate(date)}</time>
+      {readMins && <span class="dot">·</span>}
+      {readMins && <span>{readMins} min read</span>}
+    </div>
+    <h3>{title}</h3>
+    <p class="desc">{description}</p>
+    {
+      tags.length > 0 && (
+        <div class="tags">
+          {tags.slice(0, 4).map((t) => (
+            <span class="tag">#{t}</span>
+          ))}
+        </div>
+      )
+    }
+  </div>
+</a>
+
+<style>
+  .post {
+    display: flex;
+    flex-direction: column;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    color: var(--text);
+    height: 100%;
+    transition: transform 0.14s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+  .post:hover {
+    text-decoration: none;
+    transform: translateY(-3px);
+    border-color: var(--brand);
+    box-shadow: var(--shadow);
+  }
+  .cover {
+    aspect-ratio: 16 / 9;
+    background: var(--bg-elevated);
+    border-bottom: 1px solid var(--border);
+  }
+  .cover img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border: none;
+    border-radius: 0;
+  }
+  .body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+    padding: 1.4rem;
+    flex: 1;
+  }
+  .meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-size: 0.8rem;
+    color: var(--text-dim);
+    font-family: var(--mono);
+  }
+  .post h3 {
+    margin: 0;
+    font-size: 1.2rem;
+  }
+  .desc {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    flex: 1;
+  }
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.3rem;
+  }
+</style>

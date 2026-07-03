@@ -1,0 +1,55 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Search from 'astro-pagefind/components/Search.astro';
+---
+
+<BaseLayout title="Search" description="Full-text search across posts and projects.">
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Search</p>
+      <h1 class="page-title">Search the site</h1>
+      <p class="lead muted">
+        Full-text search across every post and project. Results are generated at build time with Pagefind — no server, no tracking.
+      </p>
+
+      <div class="search-wrap">
+        <Search
+          className="pagefind-ui"
+          searchboxOptions={{ placeholder: 'Search posts and projects…' }}
+        />
+      </div>
+
+      <noscript>
+        <p class="muted">
+          Search needs JavaScript. Browse the <a href="/blog">blog</a> or <a href="/projects">projects</a> instead.
+        </p>
+      </noscript>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin: 0.25rem 0 0.75rem;
+  }
+  .lead {
+    max-width: 640px;
+    font-size: 1.1rem;
+    margin: 0 0 2rem;
+  }
+  .search-wrap {
+    max-width: 640px;
+  }
+  /* Theme the Pagefind UI to match the site palette. */
+  .search-wrap :global(.pagefind-ui) {
+    --pagefind-ui-primary: var(--brand);
+    --pagefind-ui-text: var(--text);
+    --pagefind-ui-background: var(--bg-card);
+    --pagefind-ui-border: var(--border);
+    --pagefind-ui-tag: var(--bg-elevated, var(--bg-card));
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-border-radius: var(--radius);
+    --pagefind-ui-font: var(--sans, inherit);
+  }
+</style>

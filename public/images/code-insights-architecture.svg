@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" width="1200" height="640" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="g" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#3ddc97"/></marker>
+  </defs>
+  <rect width="1200" height="640" fill="#0b0e14"/>
+
+  <!-- host box -->
+  <rect x="40" y="70" width="720" height="530" rx="16" fill="#0d1320" stroke="#2b3650"/>
+  <text x="64" y="104" font-size="17" font-weight="700" fill="#e6e9ef">Editor extension host (TypeScript)</text>
+
+  <g font-family="ui-monospace, Menlo, monospace" font-size="14.5">
+    <text x="64" y="140" fill="#8ea2ff">extension.ts</text><text x="320" y="140" fill="#9aa6bd">activation, commands, 2 webviews</text>
+
+    <text x="64" y="176" font-size="13" font-family="-apple-system" font-weight="700" fill="#ffb454">Coverage subsystem</text>
+    <text x="64" y="208" fill="#3ddc97">CoverageViewProvider</text><text x="320" y="208" fill="#9aa6bd">orchestrate run/parse/render</text>
+    <text x="64" y="240" fill="#3ddc97">buildRunner</text><text x="320" y="240" fill="#9aa6bd">run mvn/gradle as a task</text>
+    <text x="64" y="272" fill="#3ddc97">jacocoParser</text><text x="320" y="272" fill="#9aa6bd">parse/merge/filter JaCoCo XML</text>
+    <text x="64" y="304" fill="#3ddc97">CoverageDecorator</text><text x="320" y="304" fill="#9aa6bd">gutter highlights</text>
+
+    <text x="64" y="342" font-size="13" font-family="-apple-system" font-weight="700" fill="#ffb454">Sonar subsystem</text>
+    <text x="64" y="374" fill="#3ddc97">SonarViewProvider</text><text x="320" y="374" fill="#9aa6bd">orchestrate sync/analyze</text>
+    <text x="64" y="406" fill="#3ddc97">sonarSync</text><text x="320" y="406" fill="#9aa6bd">one-time rule sync (raw socket)</text>
+    <text x="64" y="438" fill="#3ddc97">SonarLintRunner</text><text x="320" y="438" fill="#9aa6bd">drive the JVM analyzer</text>
+    <text x="64" y="470" fill="#3ddc97">analysisEngine</text><text x="320" y="470" fill="#9aa6bd">lite regex fallback (~8 rules)</text>
+    <text x="64" y="502" fill="#3ddc97">RulesCache</text><text x="320" y="502" fill="#9aa6bd">persist rules on disk (offline)</text>
+    <text x="64" y="534" fill="#3ddc97">SonarDiagnostics</text><text x="320" y="534" fill="#9aa6bd">editor squiggles</text>
+    <text x="64" y="566" fill="#3ddc97">export</text><text x="320" y="566" fill="#9aa6bd">MD /CSV / SARIF</text>
+  </g>
+
+  <!-- spawned processes -->
+  <text x="820" y="104" font-size="15" font-weight="700" fill="#9aa6bd">spawned processes</text>
+  <rect x="820" y="120" width="340" height="86" rx="12" fill="#151b28" stroke="#2b3650"/>
+  <text x="840" y="152" font-size="15" font-weight="700" fill="#e6e9ef">mvn / gradle test</text>
+  <text x="840" y="180" font-size="14" font-family="ui-monospace, Menlo, monospace" fill="#9aa6bd">&#8594; jacoco.xml</text>
+
+  <rect x="820" y="246" width="340" height="116" rx="12" fill="#151b28" stroke="#2b3650"/>
+  <text x="840" y="278" font-size="15" font-weight="700" fill="#e6e9ef">JVM analyzer (child)</text>
+  <text x="840" y="306" font-size="14" font-family="ui-monospace, Menlo, monospace" fill="#9aa6bd">sonar-runner.jar + sonar-java</text>
+  <text x="840" y="334" font-size="14" font-family="ui-monospace, Menlo, monospace" fill="#9aa6bd">&#8594; issues JSON</text>
+
+  <rect x="820" y="402" width="340" height="86" rx="12" fill="#0d1320" stroke="#ffb454"/>
+  <text x="840" y="434" font-size="15" font-weight="700" fill="#ffb454">SonarQube Web API</text>
+  <text x="840" y="462" font-size="14" fill="#9aa6bd">one-time rule sync only</text>
+
+  <!-- arrows -->
+  <line x1="762" y1="236" x2="814" y2="163" stroke="#3ddc97" stroke-width="2.5" marker-end="url(#g)"/>
+  <line x1="762" y1="434" x2="814" y2="304" stroke="#3ddc97" stroke-width="2.5" marker-end="url(#g)"/>
+  <line x1="762" y1="402" x2="814" y2="438" stroke="#ffb454" stroke-width="2.5" marker-end="url(#g)"/>
+  <text x="770" y="392" font-size="12" fill="#ffb454">once</text>
+</svg>

@@ -1,0 +1,231 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { SITE, SOCIALS, FOCUS, IMPACT } from '../site.config';
+import { personSchema } from '../lib/seo';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (href: string) => `${base.replace(/\/$/, '')}${href}`;
+
+const schema = personSchema(Astro.site);
+
+const aboutTags = [
+  'Telecom BSS / OSS',
+  'Distributed systems',
+  'Platform engineering',
+  'Developer experience',
+  'AI-assisted workflows',
+  'Security & privacy',
+];
+---
+
+<BaseLayout
+  title="About"
+  description="Engineer who treats developer experience as a product — backend, architecture, and platform engineering."
+  schema={schema}
+>
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">About</p>
+      <h1 class="page-title">Engineer who treats developer experience as a product.</h1>
+
+      <div class="prose intro">
+        <p>
+          Backend engineer in the <strong>telecom B2B / BSS</strong> domain, designing event-driven Java / Spring Boot systems for product ordering, offerings, billing and shipping. 
+          I pair that with deep <strong>platform engineering </strong> and a track record of turning engineering friction into shipped developer tools, IDE plugins, and AI/MCP automations.
+        </p>
+        <p>
+          I work across the full stack of a large microservice estate — from designing <strong>event-driven services</strong> with Kafka and shipping them on
+          <strong>OpenShift / Kubernetes</strong>, to building the editor tooling that lets my team understand and maintain that estate without drowning in it.
+        </p>
+        <p>
+          My approach is consistent across everything I build: <strong>SOLID, security-first (CIA triad), performance-aware, and well-documented.</strong> 
+          I care about the <em>seams</em> of a system — clear boundaries, testability, observability — and about removing the repetitive pain that slows engineers down.
+        </p>
+        <p>
+          On the side I co-run <a href="https://github.com/WeDontTrack" target="_blank" rel="noopener">WeDontTrack</a>, an open-source org building privacy-respecting apps, and I write about backend, DevOps, and security here and on <a href="https://dev.to/vijay2249" target="_blank" rel="noopener">dev.to</a>.
+          I'm currently going deeper on the QUIC protocol, Linux internals, AWS, and DSA in Go &amp; Python.
+        </p>
+      </div>
+
+      <div class="chips">
+        {aboutTags.map((t) => <span class="tag">{t}</span>)}
+      </div>
+
+      <h2 class="block-title">What I bring to a team</h2>
+      <div class="grid grid-2">
+        {
+          FOCUS.map((f) => (
+            <article class="focus">
+              <div class="focus-icon">{f.icon}</div>
+              <h3>{f.title}</h3>
+              <p class="muted">{f.body}</p>
+              <ul class="mini-chips">
+                {f.chips.map((c) => (
+                  <li class="tag">{c}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+
+      <h2 class="block-title">The kind of leverage I add</h2>
+      <div class="grid grid-3">
+        {
+          IMPACT.map((i) => (
+            <div class="impact">
+              <h3>{i.title}</h3>
+              <p class="muted">{i.body}</p>
+            </div>
+          ))
+        }
+      </div>
+
+      <h2 class="block-title">Find me online</h2>
+      <div class="grid grid-2 links">
+        {
+          SOCIALS.map((s) => (
+            <a class="link-card" href={s.href} target="_blank" rel="noopener me">
+              <span class="link-info">
+                <strong>{s.label}</strong>
+                <span class="muted">{s.handle}</span>
+              </span>
+              <span class="arrow">→</span>
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="contact-box">
+        <h2>Let's build something solid.</h2>
+        <p class="muted">
+          Open to conversations about backend architecture, platform engineering, and developer-experience work.
+        </p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href={`mailto:${SITE.email}`}>Email me</a>
+          <a class="btn btn-ghost" href={withBase('/projects')}>See my work</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: clamp(2rem, 5vw, 2.6rem);
+    margin: 0 0 1.5rem;
+    max-width: 760px;
+  }
+  .intro {
+    font-size: 1.08rem;
+    margin-bottom: 1.5rem;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+  }
+  .block-title {
+    font-size: 1.4rem;
+    margin: 3rem 0 1.5rem;
+  }
+  .focus {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.55rem;
+  }
+  .focus-icon {
+    font-size: 1.5rem;
+  }
+  .focus h3 {
+    margin: 0;
+    font-size: 1.1rem;
+  }
+  .focus p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  .mini-chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.4rem 0 0;
+    padding: 0;
+  }
+  .impact {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.4rem;
+  }
+  .impact h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1.05rem;
+    color: var(--brand);
+  }
+  .impact p {
+    margin: 0;
+    font-size: 0.92rem;
+  }
+  .link-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.4rem;
+    color: var(--text);
+    transition: transform 0.14s ease, border-color 0.2s ease;
+  }
+  .link-card:hover {
+    text-decoration: none;
+    transform: translateY(-2px);
+    border-color: var(--brand);
+  }
+  .link-info {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.3;
+  }
+  .link-info .muted {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+  }
+  .arrow {
+    margin-left: auto;
+    color: var(--brand);
+  }
+  .contact-box {
+    margin-top: 3rem;
+    text-align: center;
+    background: linear-gradient(
+      135deg,
+      rgba(61, 220, 151, 0.08),
+      rgba(99, 91, 255, 0.08)
+    );
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 3rem 1.5rem;
+  }
+  .contact-box h2 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.4rem, 4vw, 1.9rem);
+  }
+  .contact-box p {
+    max-width: 540px;
+    margin: 0 auto 1.75rem;
+  }
+  .cta-actions {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+</style>

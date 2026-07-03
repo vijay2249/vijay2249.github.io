@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 220" width="1000" height="220">
+  <rect width="1000" height="220" rx="14" fill="#0b0e14" stroke="#232c3d"/>
+  <g font-family="-apple-system, Segoe UI, Roboto, sans-serif" font-size="18">
+    <g>
+      <rect x="40" y="80" width="150" height="60" rx="12" fill="#151b28" stroke="#232c3d"/>
+      <text x="115" y="116" text-anchor="middle" fill="#e6e9ef">push / PR</text>
+    </g>
+    <g>
+      <rect x="260" y="80" width="150" height="60" rx="12" fill="#151b28" stroke="#3ddc97"/>
+      <text x="335" y="108" text-anchor="middle" fill="#3ddc97">build</text>
+      <text x="335" y="128" text-anchor="middle" fill="#9aa6bd" font-size="13">mvn verify</text>
+    </g>
+    <g>
+      <rect x="480" y="80" width="150" height="60" rx="12" fill="#151b28" stroke="#3ddc97"/>
+      <text x="555" y="108" text-anchor="middle" fill="#3ddc97">test</text>
+      <text x="555" y="128" text-anchor="middle" fill="#9aa6bd" font-size="13">junit + jacoco</text>
+    </g>
+    <g>
+      <rect x="700" y="80" width="150" height="60" rx="12" fill="#151b28" stroke="#3ddc97"/>
+      <text x="775" y="108" text-anchor="middle" fill="#3ddc97">quality gate</text>
+      <text x="775" y="128" text-anchor="middle" fill="#9aa6bd" font-size="13">sonarqube</text>
+    </g>
+    <g stroke="#3ddc97" stroke-width="3" fill="none" marker-end="url(#a)">
+      <line x1="190" y1="110" x2="255" y2="110"/>
+      <line x1="410" y1="110" x2="475" y2="110"/>
+      <line x1="630" y1="110" x2="695" y2="110"/>
+    </g>
+  </g>
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="6" refY="3" orient="auto">
+      <path d="M0 0 L6 3 L0 6 Z" fill="#3ddc97"/>
+    </marker>
+  </defs>
+</svg>

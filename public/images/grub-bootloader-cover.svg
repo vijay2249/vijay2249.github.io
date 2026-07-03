@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#07090d"/>
+      <stop offset="1" stop-color="#13110a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="240" cy="520" r="240" fill="#ffb454" opacity="0.10"/>
+  <g font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+    <text x="90" y="150" font-size="50" font-weight="800" fill="#e6e9ef">GRUB: what is it?</text>
+    <text x="90" y="206" font-size="26" fill="#ffb454">BIOS &#8594; bootloader &#8594; kernel &#8594; login</text>
+  </g>
+  <g transform="translate(120, 300)" font-family="ui-monospace, Menlo, monospace" font-size="18">
+    <rect x="0" y="0" width="960" height="300" rx="12" fill="#000000" stroke="#2a2a2a"/>
+    <text x="28" y="56" fill="#3ddc97">GNU GRUB  version 2.06</text>
+    <rect x="28" y="86" width="904" height="40" fill="#ffb454" opacity="0.18"/>
+    <text x="44" y="114" fill="#ffd43b">*Linux</text>
+    <text x="44" y="162" fill="#9aa6bd"> Linux (recovery mode)</text>
+    <text x="44" y="210" fill="#9aa6bd"> Memory test</text>
+    <text x="28" y="270" fill="#6b7689">Use the arrow keys to select an entry. Press Enter to boot.</text>
+  </g>
+</svg>

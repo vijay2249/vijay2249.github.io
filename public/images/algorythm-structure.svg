@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 380" width="1000" height="380" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="z" markerWidth="9" markerHeight="9" refX="7" refY="3" orient="auto"><path d="M0,0 L7,3 L0,6 Z" fill="#5a6b8c"/></marker>
+  </defs>
+  <rect width="1000" height="380" fill="#0b0e14"/>
+  <text x="40" y="44" font-size="17" font-weight="700" fill="#e6e9ef">Pseudocode-first, one algorithm per language</text>
+
+  <!-- root -->
+  <rect x="400" y="80" width="200" height="56" rx="12" fill="#0d1320" stroke="#3ddc97"/>
+  <text x="500" y="114" text-anchor="middle" font-size="15" font-weight="700" font-family="ui-monospace, Menlo, monospace" fill="#3ddc97">AlgoRythm/</text>
+
+  <!-- connectors -->
+  <g stroke="#5a6b8c" stroke-width="2" fill="none">
+    <path d="M500,136 L500,170 L150,170 L150,206" marker-end="url(#z)"/>
+    <path d="M500,170 L383,170 L383,206" marker-end="url(#z)"/>
+    <path d="M500,170 L617,170 L617,206" marker-end="url(#z)"/>
+    <path d="M500,170 L850,170 L850,206" marker-end="url(#z)"/>
+  </g>
+
+  <!-- language boxes -->
+  <g font-family="ui-monospace, Menlo, monospace">
+    <rect x="60" y="208" width="180" height="92" rx="12" fill="#151b28" stroke="#2b3650"/>
+    <text x="150" y="240" text-anchor="middle" font-size="15" font-weight="700" fill="#8ea2ff">go/</text>
+    <text x="150" y="266" text-anchor="middle" font-size="11.5" font-family="-apple-system" fill="#9aa6bd">implementation</text>
+    <text x="150" y="284" text-anchor="middle" font-size="11.5" font-family="-apple-system" fill="#9aa6bd">+ pseudocode.md</text>
+
+    <rect x="293" y="208" width="180" height="92" rx="12" fill="#151b28" stroke="#2b3650"/>
+    <text x="383" y="240" text-anchor="middle" font-size="15" font-weight="700" fill="#8ea2ff">python/</text>
+    <text x="383" y="266" text-anchor="middle" font-size="11.5" font-family="-apple-system" fill="#9aa6bd">implementation</text>
+    <text x="383" y="284" text-anchor="middle" font-size="11.5" font-family="-apple-system" fill="#9aa6bd">+ pseudocode.md</text>
+
+    <rect x="527" y="208" width="180" height="92" rx="12" fill="#151b28" stroke="#2b3650"/>
+    <text x="617" y="240" text-anchor="middle" font-size="15" font-weight="700" fill="#8ea2ff">java/</text>
+    <text x="617" y="266" text-anchor="middle" font-size="11.5" font-family="-apple-system" fill="#9aa6bd">implementation</text>
+    <text x="617" y="284" text-anchor="middle" font-size="11.5" font-family="-apple-system" fill="#9aa6bd">+ pseudocode.md</text>
+
+    <rect x="760" y="208" width="180" height="92" rx="12" fill="#151b28" stroke="#2b3650"/>
+    <text x="850" y="240" text-anchor="middle" font-size="15" font-weight="700" fill="#8ea2ff">javascript/</text>
+    <text x="850" y="266" text-anchor="middle" font-size="11.5" font-family="-apple-system" fill="#9aa6bd">implementation</text>
+    <text x="850" y="284" text-anchor="middle" font-size="11.5" font-family="-apple-system" fill="#9aa6bd">+ pseudocode.md</text>
+  </g>
+  <text x="500" y="344" text-anchor="middle" font-size="13" fill="#6b7689">same algorithm, explained once, implemented many ways</text>
+</svg>

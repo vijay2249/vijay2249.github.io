@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 300" width="1120" height="300" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <rect width="1120" height="300" fill="#0b0e14"/>
+  <text x="60" y="48" font-size="17" font-weight="700" fill="#e6e9ef">A pooled ride, broken into segments</text>
+
+  <!-- base line -->
+  <line x1="120" y1="150" x2="900" y2="150" stroke="#2b3650" stroke-width="3"/>
+
+  <!-- segment colors -->
+  <line x1="120" y1="150" x2="380" y2="150" stroke="#3ddc97" stroke-width="5"/>
+  <line x1="380" y1="150" x2="640" y2="150" stroke="#8ea2ff" stroke-width="5"/>
+  <line x1="640" y1="150" x2="900" y2="150" stroke="#ffb454" stroke-width="5"/>
+
+  <!-- stops -->
+  <g font-size="14">
+    <circle cx="120" cy="150" r="9" fill="#0b0e14" stroke="#e6e9ef" stroke-width="2"/>
+    <text x="120" y="122" text-anchor="middle" fill="#cfd6e6">A pickup</text>
+    <circle cx="380" cy="150" r="9" fill="#0b0e14" stroke="#e6e9ef" stroke-width="2"/>
+    <text x="380" y="122" text-anchor="middle" fill="#cfd6e6">B pickup</text>
+    <circle cx="640" cy="150" r="9" fill="#0b0e14" stroke="#e6e9ef" stroke-width="2"/>
+    <text x="640" y="122" text-anchor="middle" fill="#cfd6e6">A dropoff</text>
+    <circle cx="900" cy="150" r="9" fill="#0b0e14" stroke="#e6e9ef" stroke-width="2"/>
+    <text x="900" y="122" text-anchor="middle" fill="#cfd6e6">B dropoff</text>
+  </g>
+
+  <!-- segment occupant sets -->
+  <g font-family="ui-monospace, Menlo, monospace" font-size="16">
+    <text x="250" y="192" text-anchor="middle" fill="#3ddc97">{A}</text>
+    <text x="510" y="192" text-anchor="middle" fill="#8ea2ff">{A, B}</text>
+    <text x="770" y="192" text-anchor="middle" fill="#ffb454">{B}</text>
+  </g>
+  <g font-size="13">
+    <text x="250" y="216" text-anchor="middle" fill="#9aa6bd">solo A</text>
+    <text x="510" y="216" text-anchor="middle" fill="#9aa6bd">shared</text>
+    <text x="770" y="216" text-anchor="middle" fill="#9aa6bd">solo B</text>
+  </g>
+  <text x="510" y="262" text-anchor="middle" font-size="13" fill="#6b7689">a segment = the stretch between two stops, where the on-board set never changes</text>
+</svg>

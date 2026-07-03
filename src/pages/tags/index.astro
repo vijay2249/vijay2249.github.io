@@ -1,0 +1,80 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getPosts, tagCounts } from '../../lib/posts';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (href: string) => `${base.replace(/\/$/, '')}${href}`;
+
+const posts = await getPosts();
+const tags = tagCounts(posts);
+const max = tags.length ? tags[0].count : 1;
+---
+
+<BaseLayout title="Tags" description="Browse every topic on the blog.">
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Tags</p>
+      <h1 class="page-title">Browse by topic</h1>
+      <p class="muted page-lead">{tags.length} topics across {posts.length} posts.</p>
+
+      {
+        tags.length > 0 ? (
+          <div class="cloud">
+            {tags.map(({ tag, count }) => (
+              <a
+                class="cloud-tag"
+                href={withBase(`/tags/${tag}`)}
+                style={`--w:${0.85 + (count / max) * 0.9}`}
+              >
+                #{tag}
+                <span class="count">{count}</span>
+              </a>
+            ))}
+          </div>
+        ) : (
+          <p class="muted">No tags yet.</p>
+        )
+      }
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .page-title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin: 0 0 0.75rem;
+  }
+  .page-lead {
+    margin: 0 0 2.5rem;
+    font-size: 1.05rem;
+  }
+  .cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+  .cloud-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: calc(var(--w) * 1rem);
+    padding: 0.4rem 0.85rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    color: var(--text);
+    font-weight: 600;
+  }
+  .cloud-tag:hover {
+    text-decoration: none;
+    border-color: var(--brand);
+    color: var(--brand);
+  }
+  .count {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    background: var(--bg-elevated);
+    border-radius: 999px;
+    padding: 0.05rem 0.45rem;
+  }
+</style>

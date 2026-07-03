@@ -1,0 +1,350 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import TableOfContents from '../../components/TableOfContents.astro';
+import PostCard from '../../components/PostCard.astro';
+import Comments from '../../components/Comments.astro';
+import DiagramZoom from '../../components/DiagramZoom.astro';
+import { CATEGORIES } from '../../site.config';
+import { getPosts, readingTime, relatedPosts, formatDate } from '../../lib/posts';
+import { abs, blogPostingSchema, breadcrumbSchema } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({
+    params: { slug: post.id },
+    props: {
+      post,
+      posts,
+      // posts is newest-first: newer is the previous index, older the next.
+      newer: posts[i - 1] ?? null,
+      older: posts[i + 1] ?? null,
+    },
+  }));
+}
+
+const { post, posts, newer, older } = Astro.props;
+const { data } = post;
+const { Content, headings } = await render(post);
+
+const base = import.meta.env.BASE_URL;
+const withBase = (href: string) => `${base.replace(/\/$/, '')}${href}`;
+const asset = (p?: string) => p ? `${base.replace(/\/$/, '')}${p.startsWith('/') ? p : `/${p}`}` : undefined;
+
+const mins = readingTime(post.body);
+const related = relatedPosts(post, posts);
+const catLabel = CATEGORIES[data.category]?.label ?? data.category;
+const coverSrc = asset(data.cover);
+
+const ogImage = `/og/blog/${post.id}.png`;
+const postUrl = new URL(Astro.url.pathname, Astro.site).href;
+const schema = [
+  blogPostingSchema({
+    title: data.title,
+    description: data.description,
+    url: postUrl,
+    image: abs(ogImage, Astro.site),
+    datePublished: data.date.toISOString(),
+    dateModified: (data.updated ?? data.date).toISOString(),
+    tags: data.tags,
+  }),
+  breadcrumbSchema([
+    { name: 'Home', url: abs('/', Astro.site) },
+    { name: 'Blog', url: abs('/blog', Astro.site) },
+    { name: data.title, url: postUrl },
+  ]),
+];
+
+const seriesPosts = data.series
+  ? posts
+      .filter((p) => p.data.series === data.series)
+      .sort((a, b) => a.data.date.getTime() - b.data.date.getTime())
+  : [];
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  type="article"
+  image={ogImage}
+  imageAlt={data.title}
+  publishedTime={data.date.toISOString()}
+  modifiedTime={(data.updated ?? data.date).toISOString()}
+  schema={schema}
+>
+  <section class="section">
+    <div class="container">
+      <a class="back" href={withBase('/blog')}>← All posts</a>
+
+      <div class="layout">
+        <article data-pagefind-body data-pagefind-meta={`category:${catLabel}`}>
+          <header class="post-header">
+            <div class="post-meta">
+              <span class:list={['pill', `cat-${data.category}`]}>{catLabel}</span>
+              <time datetime={data.date.toISOString()}>{formatDate(data.date)}</time>
+              <span class="dot">·</span>
+              <span>{mins} min read</span>
+              <span class="dot">·</span>
+              <span>{data.author}</span>
+            </div>
+            <h1 class="post-title">{data.title}</h1>
+            <p class="post-lead muted">{data.description}</p>
+            {
+              data.updated && (
+                <p class="updated">
+                  Last tended on{' '}
+                  <time datetime={data.updated.toISOString()}>
+                    {formatDate(data.updated)}
+                  </time>
+                </p>
+              )
+            }
+            {
+              data.tags.length > 0 && (
+                <div class="post-tags">
+                  {data.tags.map((t) => (
+                    <a class="tag" href={withBase(`/tags/${t}`)}>
+                      #{t}
+                    </a>
+                  ))}
+                </div>
+              )
+            }
+          </header>
+
+          {
+            coverSrc && (
+              <figure class="post-cover">
+                <img src={coverSrc} alt={data.coverAlt ?? data.title} />
+              </figure>
+            )
+          }
+
+          {
+            seriesPosts.length > 1 && (
+              <aside class="series">
+                <p class="series-title">Part of a series: {data.series}</p>
+                <ol>
+                  {seriesPosts.map((p) => (
+                    <li class:list={[{ current: p.id === post.id }]}>
+                      {p.id === post.id ? (
+                        <span>{p.data.title}</span>
+                      ) : (
+                        <a href={withBase(`/blog/${p.id}`)}>{p.data.title}</a>
+                      )}
+                    </li>
+                  ))}
+                </ol>
+              </aside>
+            )
+          }
+
+          <div class="prose post-body">
+            <Content />
+          </div>
+
+          {
+            (newer || older) && (
+              <nav class="postnav" aria-label="More posts">
+                {older ? (
+                  <a class="postnav-link prev" href={withBase(`/blog/${older.id}`)}>
+                    <span class="postnav-dir">← Older post</span>
+                    <span class="postnav-titl">{older.data.title}</span>
+                  </a>
+                ) : (
+                  <span class="postnav-spacer" />
+                )}
+                {newer ? (
+                  <a class="postnav-link next" href={withBase(`/blog/${newer.id}`)}>
+                    <span class="postnav-dir">Newer post →</span>
+                    <span class="postnav-titl">{newer.data.title}</span>
+                  </a>
+                ) : (
+                  <span class="postnav-spacer" />
+                )}
+              </nav>
+            )
+          }
+
+          <Comments />
+        </article>
+
+        <aside class="sidebar">
+          <TableOfContents headings={headings} />
+        </aside>
+      </div>
+
+      {
+        related.length > 0 && (
+          <div class="related">
+            <h2 class="related-title">Related posts</h2>
+            <div class="grid grid-3">
+              {related.map((p) => (
+                <PostCard
+                  href={withBase(`/blog/${p.id}`)}
+                  title={p.data.title}
+                  description={p.data.description}
+                  date={p.data.date}
+                  category={p.data.category}
+                  tags={p.data.tags}
+                  readMins={readingTime(p.body)}
+                />
+              ))}
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <DiagramZoom />
+</BaseLayout>
+
+<style>
+  .back {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+  .back:hover {
+    color: var(--brand);
+    text-decoration: none;
+  }
+  .layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 2.5rem;
+  }
+  @media (min-width: 960px) {
+    .layout {
+      grid-template-columns: minmax(0, 1fr) 240px;
+    }
+    .sidebar {
+      order: 2;
+    }
+  }
+  .post-header {
+    max-width: 720px;
+    padding-bottom: 1.75rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .post-meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    margin-bottom: 0.9rem;
+  }
+  .post-title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin: 0 0 0.75rem;
+  }
+  .post-lead {
+    font-size: 1.1rem;
+    margin: 0 0 0.75rem;
+  }
+  .updated {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    margin: 0 0 0.75rem;
+  }
+  .post-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .post-cover {
+    max-width: 720px;
+    margin: 0 0 1.75rem;
+  }
+  .post-cover img {
+    width: 100%;
+    border-radius: var(--radius);
+    border: 1px solid var(--border);
+  }
+  .series {
+    max-width: 720px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.1rem 1.3rem;
+    margin-bottom: 1.75rem;
+  }
+  .series-title {
+    margin: 0 0 0.5rem;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--brand);
+  }
+  .series ol {
+    margin: 0;
+    padding-left: 1.2rem;
+  }
+  .series li.current span {
+    color: var(--text);
+    font-weight: 600;
+  }
+  .postnav {
+    max-width: 720px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+    margin: 2.5rem 0 0;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .postnav-link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+    padding: 0.9rem 1.1rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text);
+  }
+  .postnav-link:hover {
+    border-color: var(--brand);
+    text-decoration: none;
+  }
+  .postnav-link.next {
+    text-align: right;
+  }
+  .postnav-spacer {
+    display: block;
+  }
+  .postnav-dir {
+    font-family: var(--mono);
+    font-size: 0.78rem;
+    color: var(--text-dim);
+  }
+  .postnav-titl {
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  @media (max-width: 560px) {
+    .postnav {
+      grid-template-columns: 1fr;
+    }
+    .postnav-link.next {
+      text-align: left;
+    }
+    .postnav-spacer {
+      display: none;
+    }
+  }
+  .related {
+    margin-top: 3.5rem;
+    padding-top: 2.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .related-title {
+    font-size: 1.4rem;
+    margin: 0 0 1.5rem;
+  }
+</style>

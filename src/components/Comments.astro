@@ -1,0 +1,61 @@
+---
+// Comments — DEFERRED to a later release.
+//
+// This blog is fully static, so the recommended zero-backend option is Giscus
+// (https://giscus.app), which stores comments in GitHub Discussions. It needs
+// no database and no trackers, which fits this site well.
+//
+// To enable in a future release:
+//   1. Make the repo public and enable the "Discussions" feature.
+//   2. Install the Giscus GitHub App and pick a Discussions category.
+//   3. Fill in the data-* values below from giscus.app, then remove the
+//      `enabled` guard (or set ENABLE_COMMENTS = true).
+//
+// It is intentionally inert today so it can ship without changes later.
+
+const ENABLE_COMMENTS = false;
+
+const GISCUS = {
+  repo: 'vijay2249/blog', // e.g. "vijay2249/blog"
+  repoId: '', // from giscus.app
+  category: 'Comments',
+  categoryId: '', // from giscus.app
+};
+---
+
+{
+  ENABLE_COMMENTS ? (
+    <section class="comments" aria-label="Comments">
+      <h2>Comments</h2>
+      <script
+        src="https://giscus.app/client.js"
+        data-repo={GISCUS.repo}
+        data-repo-id={GISCUS.repoId}
+        data-category={GISCUS.category}
+        data-category-id={GISCUS.categoryId}
+        data-mapping="pathname"
+        data-strict="1"
+        data-reactions-enabled="1"
+        data-emit-metadata="0"
+        data-input-position="top"
+        data-theme="preferred_color_scheme"
+        data-lang="en"
+        crossorigin="anonymous"
+        async
+      />
+    </section>
+  ) : null
+}
+
+<style>
+  .comments {
+    max-width: 720px;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid var(--border);
+  }
+  .comments h2 {
+    font-size: 1.3rem;
+    margin: 0 0 1rem;
+  }
+</style>

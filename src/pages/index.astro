@@ -1,0 +1,246 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import PostCard from '../components/PostCard.astro';
+import { FOCUS, METRICS, SITE } from '../site.config';
+import { getPosts, readingTime } from '../lib/posts';
+import { getProjects } from '../lib/projects';
+import { personSchema } from '../lib/seo';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (href: string) => `${base.replace(/\/$/, '')}${href}`;
+
+const schema = personSchema(Astro.site);
+
+const allProjects = await getProjects();
+const featured = allProjects.filter((p) => p.data.featured);
+const featuredProjects = (featured.length > 0 ? featured : allProjects).slice(0, 4);
+
+const posts = await getPosts();
+const latestPosts = posts.slice(0, 3);
+---
+
+<BaseLayout schema={schema}>
+  <Hero />
+
+  <section class="metrics">
+    <div class="container metrics-grid">
+      {
+        METRICS.map((m) => (
+          <div class="metric">
+            <span class="metric-num">{m.num}</span>
+            <span class="metric-label muted">{m.label}</span>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <p class="eyebrow">Capabilities</p>
+      <h2 class="section-title">What I bring to a team</h2>
+      <div class="grid grid-2">
+        {
+          FOCUS.map((f) => (
+            <article class="focus">
+              <div class="focus-icon">{f.icon}</div>
+              <h3>{f.title}</h3>
+              <p class="muted">{f.body}</p>
+              <ul class="chips">
+                {f.chips.map((c) => (
+                  <li class="tag">{c}</li>
+                ))}
+              </ul>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-alt">
+    <div class="container">
+      <div class="section-head">
+        <div>
+          <p class="eyebrow">Selected work</p>
+          <h2 class="section-title">Projects</h2>
+        </div>
+        <a class="btn btn-ghost" href={withBase('/projects')}>All projects</a>
+      </div>
+      <div class="grid grid-2">
+        {
+          featuredProjects.map((p) => (
+            <ProjectCard
+              href={withBase(`/projects/${p.id}`)}
+              title={p.data.title}
+              tagline={p.data.tagline}
+              stack={p.data.stack}
+              status={p.data.status}
+              year={p.data.year}
+              highlights={p.data.highlights}
+              repo={p.data.repo}
+              website={p.data.website}
+            />
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  {
+    latestPosts.length > 0 && (
+      <section class="section">
+        <div class="container">
+          <div class="section-head">
+            <div>
+              <p class="eyebrow">Writing</p>
+              <h2 class="section-title">From the blog</h2>
+            </div>
+            <a class="btn btn-ghost" href={withBase('/blog')}>
+              All posts
+            </a>
+          </div>
+          <div class="grid grid-3">
+            {latestPosts.map((post) => (
+              <PostCard
+                href={withBase(`/blog/${post.id}`)}
+                title={post.data.title}
+                description={post.data.description}
+                date={post.data.date}
+                category={post.data.category}
+                tags={post.data.tags}
+                readMins={readingTime(post.body)}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <section class="section">
+    <div class="container">
+      <div class="cta">
+        <h2>Let's build something solid.</h2>
+        <p class="muted">
+          Open to conversations about backend architecture, platform engineering, and developer-experience work.
+        </p>
+        <div class="cta-actions">
+          <a class="btn btn-primary" href={`mailto:${SITE.email}`}>Email me</a>
+          <a class="btn btn-ghost" href={withBase('/about')}>More about me</a>
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+<style>
+  .metrics {
+    border-bottom: 1px solid var(--border);
+    background: var(--bg-elevated);
+  }
+  .metrics-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    padding-block: 2.5rem;
+  }
+  @media (min-width: 720px) {
+    .metrics-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+  }
+  .metric {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+  .metric-num {
+    font-size: clamp(1.8rem, 4vw, 2.4rem);
+    font-weight: 800;
+    color: var(--brand);
+    letter-spacing: -0.02em;
+  }
+  .metric-label {
+    font-size: 0.85rem;
+  }
+  .section-title {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    margin: 0 0 2rem;
+  }
+  .section-alt {
+    background: var(--bg-elevated);
+    border-block: 1px solid var(--border);
+  }
+  .section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+  .section-head .section-title {
+    margin: 0;
+  }
+  .focus {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+  }
+  .focus-icon {
+    font-size: 1.6rem;
+  }
+  .focus h3 {
+    margin: 0;
+    font-size: 1.15rem;
+  }
+  .focus p {
+    margin: 0;
+    font-size: 0.95rem;
+  }
+  .chips {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin: 0.4rem 0 0;
+    padding: 0;
+  }
+  .cta {
+    text-align: center;
+    background: linear-gradient(
+      135deg,
+      rgba(61, 220, 151, 0.08),
+      rgba(99, 91, 255, 0.08)
+    );
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 3rem 1.5rem;
+  }
+  .cta h2 {
+    margin: 0 0 0.75rem;
+    font-size: clamp(1.5rem, 4vw, 2rem);
+  }
+  .cta p {
+    max-width: 540px;
+    margin: 0 auto 1.75rem;
+  }
+  .cta-actions {
+    display: flex;
+    gap: 0.8rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  @media (max-width: 640px) {
+    .section-head {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

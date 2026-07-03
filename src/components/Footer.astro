@@ -1,0 +1,108 @@
+---
+import { FOOTER_NAV, SITE, SOCIALS } from '../site.config';
+
+const base = import.meta.env.BASE_URL;
+const withBase = (href: string) => href === '/' ? base : `${base.replace(/\/$/, '')}${href}`;
+const year = new Date().getFullYear();
+---
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="brand-mark">{SITE.shortName}</span>
+      <p class="muted">{SITE.tagline}</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer">
+      {FOOTER_NAV.map((item) => <a href={withBase(item.href)}>{item.label}</a>)}
+      <a href={withBase('/rss.xml')}>RSS</a>
+    </nav>
+  </div>
+
+  <div class="container footer-socials">
+    {
+      SOCIALS.map((s) => (
+        <a href={s.href} target="_blank" rel="noopener me">
+          {s.label}
+        </a>
+      ))
+    }
+  </div>
+
+  <div class="container footer-bottom">
+    <p class="muted">
+      © {year} {SITE.name}. Built with Astro. No trackers, no ads.
+    </p>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    border-top: 1px solid var(--border);
+    margin-top: 4rem;
+    padding-block: 2.5rem 1.5rem;
+    background: var(--bg-elevated);
+  }
+  .footer-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .footer-brand {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+  }
+  .footer-brand p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
+  .brand-mark {
+    display: inline-grid;
+    place-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 8px;
+    background: var(--brand);
+    color: var(--brand-ink);
+    font-size: 0.68rem;
+    font-weight: 800;
+  }
+  .footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+  }
+  .footer-nav a {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+  .footer-nav a:hover {
+    color: var(--brand);
+    text-decoration: none;
+  }
+  .footer-socials {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.1rem;
+    margin-top: 1.5rem;
+  }
+  .footer-socials a {
+    color: var(--text-dim);
+    font-size: 0.85rem;
+  }
+  .footer-socials a:hover {
+    color: var(--brand);
+    text-decoration: none;
+  }
+  .footer-bottom {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
+    border-top: 1px solid var(--border);
+  }
+  .footer-bottom p {
+    margin: 0;
+    font-size: 0.82rem;
+  }
+</style>

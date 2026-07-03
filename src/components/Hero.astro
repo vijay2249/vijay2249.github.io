@@ -1,0 +1,95 @@
+---
+import { SITE } from '../site.config';
+const base = import.meta.env.BASE_URL;
+const withBase = (href: string) => `${base.replace(/\/$/, '')}${href}`;
+---
+
+<section class="hero">
+  <div class="container hero-inner">
+    <p class="eyebrow">Software Engineer · Architecture · Platform Engineering</p>
+    <h1>
+      I build <span class="accent">microservices at scale</span> — and the tooling that makes teams faster.
+    </h1>
+    <p class="lead">
+      Backend engineer in the <strong>telecom B2B / BSS</strong> domain, designing event-driven Java / Spring Boot systems for product ordering, offerings, billing and shipping. 
+      I pair that with deep <strong>platform engineering</strong> and a habit of turning engineering friction into shipped developer tools, IDE plugins, and AI / MCP automations.
+    </p>
+    <div class="hero-actions">
+      <a class="btn btn-primary" href={withBase('/projects')}>View selected work</a>
+      <a class="btn btn-ghost" href={withBase('/blog')}>Read the blog</a>
+    </div>
+    <div class="hero-meta">
+      <a href="https://github.com/vijay2249" target="_blank" rel="noopener">github.com/vijay2249</a>
+      <span class="dot">·</span>
+      <a href="https://github.com/WeDontTrack" target="_blank" rel="noopener">WeDontTrack</a>
+      <span class="dot">·</span>
+      <a href="https://dev.to/vijay2249" target="_blank" rel="noopener">dev.to/vijay2249</a>
+    </div>
+  </div>
+  <div class="hero-glow" aria-hidden="true"></div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+    padding-block: 6rem 4rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .hero-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
+  }
+  h1 {
+    font-size: clamp(2.3rem, 6vw, 3.6rem);
+    margin: 0 0 1.3rem;
+  }
+  .accent {
+    color: var(--brand);
+  }
+  .lead {
+    font-size: 1.12rem;
+    color: var(--text-muted);
+    max-width: 680px;
+    margin: 0 0 2rem;
+  }
+  .hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+  .hero-meta {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.6rem;
+    margin-top: 2rem;
+    font-family: var(--mono);
+    font-size: 0.85rem;
+  }
+  .hero-meta a {
+    color: var(--text-muted);
+  }
+  .hero-meta a:hover {
+    color: var(--brand);
+  }
+  .hero-meta .dot {
+    color: var(--text-dim);
+  }
+  .hero-glow {
+    position: absolute;
+    top: -30%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(
+      circle,
+      rgba(61, 220, 151, 0.12),
+      rgba(99, 91, 255, 0.08) 45%,
+      transparent 70%
+    );
+    filter: blur(20px);
+    pointer-events: none;
+  }
+</style>

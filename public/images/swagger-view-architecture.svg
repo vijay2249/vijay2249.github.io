@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 580" width="1200" height="580" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="s1" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#8ea2ff"/></marker>
+    <marker id="s2" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#3ddc97"/></marker>
+  </defs>
+  <rect width="1200" height="580" fill="#0b0e14"/>
+
+  <!-- host -->
+  <rect x="40" y="70" width="640" height="360" rx="16" fill="#0d1320" stroke="#2b3650"/>
+  <text x="64" y="104" font-size="16" font-weight="700" fill="#e6e9ef">VS Code extension host (Node / TypeScript)</text>
+  <g font-family="ui-monospace, Menlo, monospace" font-size="14">
+    <text x="64" y="140" fill="#3ddc97">index.ts</text><text x="300" y="140" fill="#9aa6bd">activation, command registration</text>
+    <text x="64" y="174" fill="#3ddc97">SpecParser</text><text x="300" y="174" fill="#9aa6bd">read file &#8594; parse YAML/JSON &#8594; model</text>
+    <text x="64" y="208" fill="#3ddc97">hashUtils</text><text x="300" y="208" fill="#9aa6bd">content hash: did it change?</text>
+    <text x="64" y="242" fill="#3ddc97">swaggerPreviewPanel</text><text x="300" y="242" fill="#9aa6bd">webview lifecycle, pin-to-file</text>
+    <text x="64" y="276" fill="#3ddc97">specAnalyzer</text><text x="300" y="276" fill="#9aa6bd">find unused defs/params/responses</text>
+    <text x="64" y="310" fill="#3ddc97">DefinitionService</text><text x="300" y="310" fill="#9aa6bd">safe delete (single / bulk)</text>
+    <text x="64" y="344" fill="#3ddc97">NavigationService</text><text x="300" y="344" fill="#9aa6bd">jump to source location</text>
+    <text x="64" y="378" fill="#3ddc97">CacheManager</text><text x="300" y="378" fill="#9aa6bd">memoize parse/analysis</text>
+  </g>
+
+  <!-- webview -->
+  <rect x="760" y="110" width="400" height="220" rx="16" fill="#151b28" stroke="#2b3650"/>
+  <text x="784" y="144" font-size="16" font-weight="700" fill="#e6e9ef">Webview (sandbox)</text>
+  <text x="784" y="170" font-size="14" fill="#9aa6bd">Swagger UI bundle</text>
+  <text x="784" y="206" font-size="14" fill="#cfd6e6">&#183; renders the spec</text>
+  <text x="784" y="234" font-size="14" fill="#cfd6e6">&#183; handles messages</text>
+  <text x="784" y="270" font-size="13.5" font-family="ui-monospace, Menlo, monospace" fill="#8ea2ff">window.ui.specActions</text>
+  <text x="784" y="294" font-size="13.5" font-family="ui-monospace, Menlo, monospace" fill="#8ea2ff">  .updateSpec(...)</text>
+
+  <!-- postMessage arrow -->
+  <line x1="684" y1="230" x2="754" y2="220" stroke="#8ea2ff" stroke-width="2.5" marker-end="url(#s1)"/>
+  <text x="690" y="208" font-size="12.5" fill="#8ea2ff">postMessage</text>
+
+  <!-- disk -->
+  <rect x="360" y="490" width="480" height="60" rx="12" fill="#0d1320" stroke="#ffb454"/>
+  <text x="600" y="526" text-anchor="middle" font-size="15" font-weight="700" fill="#ffb454">spec.yaml / spec.json &#8212; disk (the only data source)</text>
+
+  <!-- reads arrow disk -> host -->
+  <line x1="500" y1="490" x2="360" y2="434" stroke="#3ddc97" stroke-width="2.5" marker-end="url(#s2)"/>
+  <text x="360" y="476" font-size="12.5" fill="#3ddc97">reads</text>
+</svg>

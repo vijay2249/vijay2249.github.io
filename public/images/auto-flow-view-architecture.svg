@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1100 470" width="1100" height="470" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="a" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#8ea2ff"/></marker>
+  </defs>
+  <rect width="1100" height="470" fill="#0b0e14"/>
+  <text x="40" y="44" font-size="17" font-weight="700" fill="#e6e9ef">One concept, twoanalysis front-ends</text>
+
+  <!-- VS Code -->
+  <rect x="40" y="90" width="300" height="100" rx="12" fill="#151b28" stroke="#8ea2ff"/>
+  <text x="62" y="122" font-size="16" font-weight="700" fill="#8ea2ff">VS Code</text>
+  <text x="62" y="146" font-size="13" fill="#9aa6bd">heuristic source scan</text>
+  <text x="62" y="168" font-size="12.5" font-family="ui-monospace, Menlo, monospace" fill="#cfd6e6">@Test, dependsOnMethods, names</text>
+
+  <!-- IntelliJ -->
+  <rect x="40" y="270" width="300" height="100" rx="12" fill="#151b28" stroke="#ffb454"/>
+  <text x="62" y="302" font-size="16" font-weight="700" fill="#ffb454">IntelliJ</text>
+  <text x="62" y="326" font-size="13" fill="#9aa6bd">native PSI index</text>
+  <text x="62" y="348" font-size="12.5" fill="#cfd6e6">type-aware, resolves inheritance</text>
+
+  <!-- arrows to model -->
+  <line x1="342" y1="140" x2="426" y2="200" stroke="#8ea2ff" stroke-width="2.5" marker-end="url(#a)"/>
+  <line x1="342" y1="320" x2="426" y2="260" stroke="#8ea2ff" stroke-width="2.5" marker-end="url(#a)"/>
+
+  <!-- model -->
+  <rect x="430" y="160" width="300" height="140" rx="12" fill="#0d1320" stroke="#3ddc97"/>
+  <text x="580" y="196" text-anchor="middle" font-size="16" font-weight="700" fill="#3ddc97">TestNG flow model</text>
+  <text x="580" y="226" text-anchor="middle" font-size="13.5" fill="#9aa6bd">framework-neutral core</text>
+  <text x="580" y="252" text-anchor="middle" font-size="13" font-family="ui-monospace,Menlo, monospace" fill="#cfd6e6">nodes = tests</text>
+  <text x="580" y="274" text-anchor="middle" font-size="13" font-family="ui-monospace,Menlo, monospace" fill="#cfd6e6">edges = dependsOnMethods</text>
+
+  <!-- arrow to view -->
+  <line x1="732" y1="230" x2="796" y2="230" stroke="#8ea2ff" stroke-width="2.5" marker-end="url(#a)"/>
+
+  <!-- view -->
+  <rect x="800" y="160" width="260" height="140" rx="12" fill="#151b28" stroke="#2b3650"/>
+  <text x="930" y="196" text-anchor="middle" font-size="16" font-weight="700" fill="#e6e9ef">Layered graph view</text>
+  <text x="930" y="226" text-anchor="middle" font-size="13" fill="#9aa6bd">depth layers, color presets</text>
+  <text x="930" y="252" text-anchor="middle" font-size="13" fill="#9aa6bd">active-editor sync</text>
+  <text x="930" y="278" text-anchor="middle" font-size="12.5" fill="#6b7689">+ optional pass/fail overlay</text>
+</svg>

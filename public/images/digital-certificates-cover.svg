@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0e14"/>
+      <stop offset="1" stop-color="#101f1a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="980" cy="540" r="240" fill="#3ddc97" opacity="0.10"/>
+  <g font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+    <text x="90" y="270" font-size="50" font-weight="800" fill="#e6e9ef">Digital certificates</text>
+    <text x="90" y="332" font-size="50" font-weight="800" fill="#3ddc97">what are those?</text>
+    <text x="90" y="392" font-size="24" fill="#9aa6bd">PKI &#183; keys &#183; hashing &#183; trust on the wire</text>
+  </g>
+  <g transform="translate(870, 200)">
+    <rect x="0" y="0" width="240" height="280" rx="16" fill="#0b0e14" stroke="#232c3d"/>
+    <path d="M120 40 l70 26 v66 c0 56 -42 90 -70 104 c-28 -14 -70 -48 -70 -104 v-66 z" fill="#101f1a" stroke="#3ddc97" stroke-width="3"/>
+    <path d="M92 150 l20 22 l40 -50" fill="none" stroke="#3ddc97" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="120" y="250" text-anchor="middle" font-family="ui-monospace, Menlo, monospace" font-size="15" fill="#9aa6bd">verified</text>
+  </g>
+</svg>

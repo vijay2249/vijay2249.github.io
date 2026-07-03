@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0d1320"/>
+      <stop offset="1" stop-color="#15233a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="980" cy="140" r="220" fill="#3ddc97" opacity="0.10"/>
+  <g font-family="ui-monospace, SFMono-Regular, Menlo, monospace">
+    <rect x="90" y="150" width="640" height="380" rx="16" fill="#0b0e14" stroke="#232c3d"/>
+    <circle cx="120" cy="182" r="7" fill="#ff5f57"/>
+    <circle cx="146" cy="182" r="7" fill="#febc2e"/>
+    <circle cx="172" cy="182" r="7" fill="#28c840"/>
+    <text x="120" y="250" font-size="22" fill="#3ddc97">GET /api/v1/orders</text>
+    <text x="120" y="290" font-size="20" fill="#9aa6bd">200 OK &#183; rendered locally</text>
+    <text x="120" y="340" font-size="20" fill="#9aa6bd">no external callbacks</text>
+    <rect x="120" y="380" width="430" height="14" rx="7" fill="#232c3d"/>
+    <rect x="120" y="412" width="330" height="14" rx="7" fill="#232c3d"/>
+    <rect x="120" y="444" width="380" height="14" rx="7" fill="#232c3d"/>
+  </g>
+  <g font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+    <text x="780" y="330" font-size="54" font-weight="800" fill="#e6e9ef">Local-first</text>
+    <text x="780" y="392" font-size="54" font-weight="800" fill="#3ddc97">dev tools</text>
+  </g>
+</svg>

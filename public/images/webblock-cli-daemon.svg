@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 360" width="1120" height="360" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="ar" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#3ddc97"/></marker>
+  </defs>
+  <rect width="1120" height="360" fill="#0b0e14"/>
+
+  <!-- CLI -->
+  <rect x="40" y="90" width="300" height="200" rx="14" fill="#151b28" stroke="#2b3650"/>
+  <text x="190" y="128" text-anchor="middle" font-size="20" font-weight="700" fill="#3ddc97">webblock (CLI)</text>
+  <text x="190" y="156" text-anchor="middle" font-size="14" fill="#9aa6bd">no privileges</text>
+  <line x1="70" y1="178" x2="310" y2="178" stroke="#232c3d"/>
+  <text x="190" y="214" text-anchor="middle" font-size="16" font-family="ui-monospace, Menlo, monospace" fill="#cfd6e6">parse + validate</text>
+
+  <!-- arrow JSON -->
+  <line x1="345" y1="170" x2="414" y2="170" stroke="#3ddc97" stroke-width="2.5" marker-end="url(#ar)"/>
+  <text x="380" y="158" text-anchor="middle" font-size="13" fill="#3ddc97">JSON</text>
+
+  <!-- daemon -->
+  <rect x="420" y="70" width="320" height="240" rx="14" fill="#151b28" stroke="#8ea2ff"/>
+  <text x="580" y="108" text-anchor="middle" font-size="20" font-weight="700" fill="#8ea2ff">webblockd (daemon)</text>
+  <text x="580" y="136" text-anchor="middle" font-size="14" fill="#9aa6bd">root / CAP_NET_ADMIN</text>
+  <line x1="450" y1="158" x2="710" y2="158" stroke="#232c3d"/>
+  <text x="580" y="196" text-anchor="middle" font-size="16" font-family="ui-monospace, Menlo, monospace" fill="#cfd6e6">authz (SO_PEERCRED)</text>
+  <text x="580" y="232" text-anchor="middle" font-size="16" font-family="ui-monospace, Menlo, monospace" fill="#cfd6e6">resolve + apply</text>
+
+  <!-- arrow nft -->
+  <line x1="745" y1="170" x2="814" y2="170" stroke="#3ddc97" stroke-width="2.5" marker-end="url(#ar)"/>
+  <text x="780" y="158" text-anchor="middle" font-size="13" fill="#3ddc97">nft</text>
+
+  <!-- kernel -->
+  <rect x="820" y="90" width="260" height="200" rx="14" fill="#151b28" stroke="#ffb454"/>
+  <text x="950" y="128" text-anchor="middle" font-size="20" font-weight="700" fill="#ffb454">Linux kernel</text>
+  <text x="950" y="156" text-anchor="middle" font-size="14" fill="#9aa6bd">netfilter egress</text>
+  <line x1="850" y1="178" x2="1050" y2="178" stroke="#232c3d"/>
+  <text x="950" y="214" text-anchor="middle" font-size="16" font-family="ui-monospace, Menlo, monospace" fill="#ff5f57">drop by dest IP</text>
+</svg>

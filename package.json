@@ -1,0 +1,27 @@
+{
+  "name": "Vijay - personal website",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "Personal blog of Vijay Nelakurthi — tutorials, a developer journal, and a digital garden.",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "check": "astro check",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@astrojs/rss": "^4.0.19",
+    "@astrojs/sitemap": "^3.6.0",
+    "astro": "^7.0.5",
+    "astro-og-canvas": "^0.13.0",
+    "astro-pagefind": "^2.0.0",
+    "pagefind": "^1.5.2"
+  },
+  "devDependencies": {
+    "picomatch": "^4.0.4"
+  }
+}

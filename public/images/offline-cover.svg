@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0e14"/>
+      <stop offset="1" stop-color="#11201a"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="950" cy="540" r="240" fill="#3ddc97" opacity="0.10"/>
+  <g font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+    <text x="90" y="280" font-size="50" font-weight="800" fill="#e6e9ef">Provably offline</text>
+    <text x="90" y="342" font-size="50" font-weight="800" fill="#3ddc97">by construction</text>
+    <text x="90" y="400" font-size="25" fill="#9aa6bd">no INTERNET permission &#183; on-deviceLLM &#183; rule-first</text>
+  </g>
+  <g transform="translate(840, 150)">
+    <path d="M110 0 L210 40 V130 C210 200 160 250 110 270 C60 250 10 200 10 130 V40 Z"
+      fill="#151b28" stroke="#3ddc97" stroke-width="4"/>
+    <path d="M70 135 l30 30 l60 -70" fill="none" stroke="#3ddc97" stroke-width="10"
+      stroke-linecap="round" stroke-linejoin="round"/>
+    <g transform="translate(150, 200)">
+      <circle cx="0" cy="0" r="26" fill="none" stroke="#ff5f57" stroke-width="5"/>
+      <line x1="-18" y1="18" x2="18" y2="-18" stroke="#ff5f57" stroke-width="5"/>
+    </g>
+    <text x="110" y="305" text-anchor="middle" font-family="ui-monospace, Menlo, monospace"
+      font-size="16" fill="#6b7689">no sockets allowed</text>
+  </g>
+</svg>

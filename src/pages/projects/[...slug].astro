@@ -1,0 +1,272 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import DiagramZoom from '../../components/DiagramZoom.astro';
+import { getProjects, STATUS_LABEL } from '../../lib/projects';
+import { abs, breadcrumbSchema } from '../../lib/seo';
+
+export async function getStaticPaths() {
+  const projects = await getProjects();
+  const tech = await getCollection('projectsTech');
+  const techIds = new Set(tech.map((t) => t.id));
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project, hasTech: techIds.has(project.id) },
+  }));
+}
+
+const { project, hasTech } = Astro.props;
+const { data } = project;
+const { Content } = await render(project);
+
+const base = import.meta.env.BASE_URL;
+const withBase = (href: string) => `${base.replace(/\/$/, '')}${href}`;
+
+// Short repo label like "github.com/WeDontTrack/swagger-view"
+const repoLabel = data.repo ? data.repo.replace(/^https?:\/\//, '').replace(/\/$/, '') : null;
+const licenseText = data.license ?? (data.internal ? 'Proprietary / internal' : 'Not specified');
+
+const ogImage = `/og/projects/${project.id}.png`;
+const projectUrl = new URL(Astro.url.pathname, Astro.site).href;
+const schema = breadcrumbSchema([
+  { name: 'Home', url: abs('/', Astro.site) },
+  { name: 'Projects', url: abs('/projects', Astro.site) },
+  { name: data.title, url: projectUrl },
+]);
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.tagline}
+  image={ogImage}
+  imageAlt={data.title}
+  schema={schema}
+>
+  <section class="section">
+    <div class="container">
+      <a class="back" href={withBase('/projects')}>← All projects</a>
+
+      <header class="project-header">
+        <div class="meta">
+          <span class="stack">{data.stack}{data.year && ` · ${data.year}`}</span>
+          <span class:list={['status', `status-${data.status}`]}>
+            {STATUS_LABEL[data.status] ?? data.status}
+          </span>
+        </div>
+        <h1 class="title">{data.title}</h1>
+        <p class="tagline muted">{data.tagline}</p>
+
+        <div class="actions">
+          {
+            hasTech && (
+              <a class="btn btn-primary" href={withBase(`/projects/${project.id}/technical`)}>
+                Technical deep-dive →
+              </a>
+            )
+          }
+          {
+            data.repo && (
+              <a
+                class:list={['btn', hasTech ? 'btn-ghost' : 'btn-primary']}
+                href={data.repo}
+                target="_blank"
+                rel="noopener"
+              >
+                View code
+              </a>
+            )
+          }
+          {
+            data.website && (
+              <a class="btn btn-ghost" href={data.website} target="_blank" rel="noopener">
+                Visit site
+              </a>
+            )
+          }
+        </div>
+
+        {
+          data.tech.length > 0 && (
+            <div class="tech">
+              {data.tech.map((t) => (
+                <span class="tag">{t}</span>
+              ))}
+            </div>
+          )
+        }
+      </header>
+
+      {
+        data.highlights.length > 0 && (
+          <ul class="highlights">
+            {data.highlights.map((h) => (
+              <li>{h}</li>
+            ))}
+          </ul>
+        )
+      }
+
+      <article class="prose" data-pagefind-body data-pagefind-meta="category:Project">
+        <Content />
+      </article>
+
+      <footer class="repo-license">
+        <h2 class="rl-title">Repository &amp; license</h2>
+        <dl class="rl-grid">
+          <div class="rl-row">
+            <dt>Source</dt>
+            <dd>
+              {
+                data.repo ? (
+                  <a href={data.repo} target="_blank" rel="noopener">
+                    {repoLabel}
+                  </a>
+                ) : data.internal ? (
+                  <span>Internal project — source not publicly available.</span>
+                ) : (
+                  <span>Not yet open-sourced.</span>
+                )
+              }
+            </dd>
+          </div>
+          <div class="rl-row">
+            <dt>License</dt>
+            <dd>{licenseText}</dd>
+          </div>
+          {
+            data.website && (
+              <div class="rl-row">
+                <dt>Website</dt>
+                <dd>
+                  <a href={data.website} target="_blank" rel="noopener">
+                    {data.website.replace(/^https?:\/\//, '').replace(/\/$/, '')}
+                  </a>
+                </dd>
+              </div>
+            )
+          }
+        </dl>
+      </footer>
+    </div>
+  </section>
+
+  <DiagramZoom />
+</BaseLayout>
+
+<style>
+  .back {
+    display: inline-block;
+    margin-bottom: 1.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+  }
+  .back:hover {
+    color: var(--brand);
+    text-decoration: none;
+  }
+  .project-header {
+    max-width: 720px;
+    padding-bottom: 1.75rem;
+    margin-bottom: 1.75rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .meta {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    margin-bottom: 0.75rem;
+  }
+  .stack {
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    color: var(--text-dim);
+  }
+  .status {
+    font-size: 0.68rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    padding: 0.2rem 0.55rem;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    color: var(--brand);
+    background: var(--brand-soft);
+  }
+  .title {
+    font-size: clamp(2rem, 5vw, 2.8rem);
+    margin: 0 0 0.5rem;
+  }
+  .tagline {
+    font-size: 1.1rem;
+    margin: 0 0 1.25rem;
+  }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+    margin-bottom: 1.25rem;
+  }
+  .tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .highlights {
+    max-width: 720px;
+    margin: 0 0 2rem;
+    padding: 1.2rem 1.3rem 1.2rem 2.4rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-muted);
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+  .repo-license {
+    max-width: 720px;
+    margin: 2.5rem 0 0;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--border);
+  }
+  .rl-title {
+    font-size: 1.1rem;
+    margin: 0 0 1rem;
+  }
+  .rl-grid {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .rl-row {
+    display: grid;
+    grid-template-columns: 7rem 1fr;
+    gap: 0.75rem;
+    align-items: baseline;
+  }
+  .rl-row dt {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: var(--text-dim);
+  }
+  .rl-row dd {
+    margin: 0;
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    word-break: break-word;
+  }
+  .rl-row dd a {
+    font-family: var(--mono);
+    font-size: 0.88rem;
+  }
+  @media (max-width: 520px) {
+    .rl-row {
+      grid-template-columns: 1fr;
+      gap: 0.15rem;
+    }
+  }
+</style>

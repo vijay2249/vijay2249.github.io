@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0e14"/>
+      <stop offset="1" stop-color="#1a1430"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="980" cy="540" r="240" fill="#635bff" opacity="0.12"/>
+  <g font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+    <text x="90" y="270" font-size="50" font-weight="800" fill="#e6e9ef">Make a local LLM</text>
+    <text x="90" y="332" font-size="50" font-weight="800" fill="#8ea2ff">return only valid JSON</text>
+    <text x="90" y="390" font-size="25" fill="#9aa6bd">GBNF grammar &#183; constrained decoding &#183; schema check</text>
+  </g>
+  <g transform="translate(760, 150)" font-family="ui-monospace, Menlo, monospace">
+    <rect x="0" y="0" width="340" height="300" rx="16" fill="#0b0e14" stroke="#232c3d"/>
+    <text x="24" y="56" font-size="20" fill="#8ea2ff">root ::= "{"</text>
+    <text x="44" y="96" font-size="20" fill="#9aa6bd">"date" : str ","</text>
+    <text x="44" y="136" font-size="20" fill="#9aa6bd">"amount": num ","</text>
+    <text x="44" y="176" font-size="20" fill="#9aa6bd">"type" : kind</text>
+    <text x="24" y="216" font-size="20" fill="#8ea2ff">"}"</text>
+    <text x="24" y="262" font-size="18" fill="#3ddc97">kind ::= "credit" | "debit"</text>
+  </g>
+</svg>

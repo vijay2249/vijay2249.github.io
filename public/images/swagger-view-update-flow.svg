@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1120 560" width="1120" height="560" font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+  <defs>
+    <marker id="u" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto"><path d="M0,0 L8,3 L0,6 Z" fill="#8ea2ff"/></marker>
+    <style>
+      .b { fill:#151b28; stroke:#2b3650; }
+      .t { fill:#e6e9ef; font-size:14px; }
+      .a { stroke:#8ea2ff; stroke-width:2.5; fill:none; }
+      .l { fill:#9aa6bd; font-size:12.5px; }
+    </style>
+  </defs>
+  <rect width="1120" height="560" fill="#0b0e14"/>
+
+  <!-- top row -->
+  <rect class="b" x="40" y="60" width="170" height="56" rx="10"/><text class="t" x="125" y="94" text-anchor="middle">edit file</text>
+  <line class="a" x1="212" y1="88" x2="258" y2="88" marker-end="url(#u)"/>
+  <rect class="b" x="260" y="60" width="170" height="56" rx="10"/><text class="t" x="345" y="94" text-anchor="middle">debounce</text>
+  <line class="a" x1="432" y1="88" x2="478" y2="88" marker-end="url(#u)"/>
+  <rect class="b" x="480" y="60" width="230" height="56" rx="10"/><text class="t" x="595" y="94" text-anchor="middle">hashUtils: changed?</text>
+  <line class="a" x1="712" y1="88" x2="828" y2="88" marker-end="url(#u)"/>
+  <text x="755" y="78" class="l">no</text>
+  <rect class="b" x="830" y="60" width="200" height="56" rx="10" stroke="#6b7689"/><text class="t" x="930" y="94" text-anchor="middle" fill="#9aa6bd">stop (no work)</text>
+
+  <!-- yes down to parse -->
+  <line class="a" x1="595" y1="116" x2="595" y2="166" marker-end="url(#u)"/>
+  <text x="608" y="146" class="l">yes</text>
+  <rect class="b" x="470" y="168" width="250" height="56" rx="10" stroke="#3ddc97"/><text class="t" x="595" y="202" text-anchor="middle" fill="#3ddc97">SpecParser: parse</text>
+
+  <!-- branch ok / error -->
+  <line class="a" x1="520" y1="224" x2="360" y2="294" marker-end="url(#u)"/>
+  <text x="380" y="268" class="l">ok</text>
+  <line class="a" x1="670" y1="224" x2="820" y2="294" marker-end="url(#u)"/>
+  <text x="740" y="268" class="l">parse error</text>
+
+  <rect class="b" x="210" y="296" width="300" height="56" rx="10"/><text class="t" x="360" y="330" text-anchor="middle">postMessage(updateSpec)</text>
+  <rect class="b" x="700" y="296" width="320" height="56" rx="10" stroke="#ff5f57"/><text class="t" x="860" y="330" text-anchor="middle" fill="#ffb3ae">surface message + line number</text>
+
+  <!-- render -->
+  <line class="a" x1="360" y1="352" x2="360" y2="406" marker-end="url(#u)"/>
+  <rect class="b" x="200" y="408" width="320" height="56" rx="10"/><text class="t" x="360" y="442" text-anchor="middle">Swagger UI re-renders in place</text>
+</svg>

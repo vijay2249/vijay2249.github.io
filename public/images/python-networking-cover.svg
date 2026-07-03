@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 675" width="1200" height="675">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0e14"/>
+      <stop offset="1" stop-color="#101a26"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="675" fill="url(#bg)"/>
+  <circle cx="980" cy="150" r="220" fill="#ffd43b" opacity="0.10"/>
+  <g font-family="-apple-system, Segoe UI, Roboto, sans-serif">
+    <text x="90" y="270" font-size="50" font-weight="800" fill="#e6e9ef">Python, on steroids</text>
+    <text x="90" y="332" font-size="50" font-weight="800" fill="#4b8bbe">networking &amp; security</text>
+    <text x="90" y="392" font-size="24" fill="#9aa6bd">sockets &#183; packets &#183; learning by building</text>
+  </g>
+  <g transform="translate(840, 180)" font-family="ui-monospace, Menlo, monospace" font-size="17">
+    <rect x="0" y="0" width="260" height="280" rx="16" fill="#0b0e14" stroke="#232c3d"/>
+    <text x="22" y="50" fill="#ffd43b">import socket</text>
+    <text x="22" y="92" fill="#9aa6bd">s = socket(AF_INET)</text>
+    <text x="22" y="134" fill="#9aa6bd">s.connect(host)</text>
+    <text x="22" y="176" fill="#4b8bbe">s.send(payload)</text>
+    <text x="22" y="218" fill="#3ddc97">recv 200 OK</text>
+  </g>
+</svg>
