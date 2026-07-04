@@ -17,10 +17,7 @@ highlights:
   - Secrets stored via VS Code SecretStorage — never in settings
 ---
 
-**Code Insights** is an IDE extension that surfaces **JUnit/JaCoCo coverage** and runs
-**SonarQube rules fully offline** via a bundled SonarLint engine. It gives you the same
-findings you'd get from a server scan, but instantly and without sending your code
-anywhere.
+**Code Insights** is an IDE extension that surfaces **JUnit/JaCoCo coverage** and runs **SonarQube rules fully offline** via a bundled SonarLint engine. It gives you the same findings you'd get from a server scan, but instantly and without sending your code anywhere.
 
 > **Internal project.** This is a closed-source tool built in an employer context, so the source isn't public. 
 > The architecture below is a scrubbed, generic version — there's a fuller write-up in [Coverage and offline static analysis in the editor](/blog/coverage-and-offline-static-analysis-in-the-editor).

@@ -17,16 +17,11 @@ cover: /images/swagger-view-cover.svg
 coverAlt: A local Swagger UI preview rendered from a spec on disk
 ---
 
-**swagger-view** is a **local-first** Swagger/OpenAPI preview extension — an embedded
-Swagger UI with **zero callbacks to any server**, plus unused-definition detection and
-safe bulk cleanup. Published as open source under [WeDontTrack](https://github.com/WeDontTrack).
+**swagger-view** is a **local-first** Swagger/OpenAPI preview extension — an embedded Swagger UI with **zero callbacks to any server**, plus unused-definition detection and safe bulk cleanup. Published as open source under [WeDontTrack](https://github.com/WeDontTrack).
 
 ## Local-first by design
 
-Most online editors send your spec to a server to render it. swagger-view reads it from
-disk, parses it locally, and renders it locally — which matters when the spec describes an
-internal or unreleased API. There's a fuller write-up in the blog post
-[on local-first dev tools](/blog/shipping-swagger-view-local-first).
+Most online editors send your spec to a server to render it. swagger-view reads it from disk, parses it locally, and renders it locally — which matters when the spec describes an internal or unreleased API. There's a fuller write-up in the blog post [on local-first dev tools](/blog/shipping-swagger-view-local-first).
 
 ## Architecture
 

@@ -15,9 +15,7 @@ highlights:
   - Engineering standards codified as review guardrails
 ---
 
-A CLI that **upgrades a microservice version in an OpenShift environment** with "happy
-helming" — pulling charts from Nexus, logging into OCP, and templating the deploy. It
-collapses a manual, error-prone, multi-step release into a single command.
+A CLI that **upgrades a microservice version in an OpenShift environment** with "happy helming" — pulling charts from Nexus, logging into OCP, and templating the deploy. It collapses a manual, error-prone, multi-step release into a single command.
 
 > **Internal project.** This is employer ops tooling, so the source isn't public. 
 > The flow below is the generic shape — no environment-specific details. There's a developer-journal entry on building it: [collapsing microservice upgrades into one command](/blog/week-notes-one-command-upgrades).
@@ -46,5 +44,4 @@ Keeping each step explicit (rather than one opaque script) makes failures easy t
 
 - **Failure-report triage and merge-conflict resolution** via MCP servers and AI agents.
 - **Postman environment generation** for B2B test suites.
-- **Engineering standards codified as review guardrails** so quality stays consistent
-  across a large microservice estate.
+- **Engineering standards codified as review guardrails** so quality stays consistent across a large microservice estate.

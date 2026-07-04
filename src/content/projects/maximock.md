@@ -15,15 +15,11 @@ highlights:
   - Privacy-first — no accounts, no tracking
 ---
 
-**maximock** is a WireMock-based alternative to Postman, published as a Maven package under
-[WeDontTrack](https://github.com/WeDontTrack). It brings API mocking into JVM workflows
-without an external app, account, or any tracking.
+**maximock** is a WireMock-based alternative to Postman, published as a Maven package under [WeDontTrack](https://github.com/WeDontTrack). It brings API mocking into JVM workflows without an external app, account, or any tracking.
 
 ## Why
 
-Mocking and exercising APIs usually means reaching for a heavyweight desktop tool.
-maximock keeps it in code and in your build, where it's versioned, reviewable, and runs in
-CI like any other dependency.
+Mocking and exercising APIs usually means reaching for a heavyweight desktop tool. maximock keeps it in code and in your build, where it's versioned, reviewable, and runs in CI like any other dependency.
 
 ## Architecture
 

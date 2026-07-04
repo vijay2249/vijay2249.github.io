@@ -16,18 +16,13 @@ cover: /images/webblock-cover.svg
 coverAlt: A request hitting a netfilter egress hook and being dropped
 ---
 
-**webblock** is a Linux website/IP blocker that drops outbound traffic to specified domains
-and IPs **at the kernel packet layer**, enforcing both system-wide and per-user policies —
-without a single setuid binary.
+**webblock** is a Linux website/IP blocker that drops outbound traffic to specified domains and IPs **at the kernel packet layer**, enforcing both system-wide and per-user policies — without a single setuid binary.
 
 > **Status: in progress.** This is an active work-in-progress personal project. The design is implemented and evolving; it isn't open-sourced yet. See the design walk-through in [Blocking websites at the kernel layer on Linux](/blog/blocking-websites-kernel-layer-linux).
 
 ## Why I built it
 
-`/etc/hosts` and DNS blocklists are system-wide only and trivially bypassed by hitting an IP
-directly. I wanted a blocker that applies to **every** client (including `curl http://<ip>`),
-supports **private per-user lists**, lets **root administer everyone**, and uses **no setuid**
-— each of which quietly rules out the easy options.
+`/etc/hosts` and DNS blocklists are system-wide only and trivially bypassed by hitting an IP directly. I wanted a blocker that applies to **every** client (including `curl http://<ip>`), supports **private per-user lists**, lets **root administer everyone**, and uses **no setuid** — each of which quietly rules out the easy options.
 
 ## Architecture
 
@@ -41,15 +36,11 @@ A root daemon (`webblockd`, `CAP_NET_ADMIN` only) owns the firewall and config; 
 
 ## Technical explanation
 
-- **Enforcement in the kernel:** a netfilter egress filter drops packets by destination IP,
-  so the block is independent of which process or name resolution produced the request.
+- **Enforcement in the kernel:** a netfilter egress filter drops packets by destination IP, so the block is independent of which process or name resolution produced the request.
 - **Kernel-verified identity:** the request protocol carries **no uid field**. The daemon reads the caller's uid from `SO_PEERCRED` — which the kernel fills in and the client can't forge — so per-user authorization is trustworthy. uid 0 manages everyone; any other uid is scoped to its own list.
 - **O(1) data plane:** named hash sets give ~O(1) membership checks, and a per-uid verdict map (`meta skuid vmap`) keeps the per-packet cost a single map lookup regardless of how many users have lists — not a linear scan.
 - **Atomic, fail-safe applies:** every change is one `nft -f` transaction (or the ipset create/swap/destroy idiom), so there's never a half-applied ruleset. A transient DNS failure **retains the previous IPs** rather than silently unblocking, and persisted lists are reconciled into the live firewall on boot.
 
 ## What made it interesting
 
-Most of the architecture fell out of the constraints: "no setuid" and "per-user privacy"
-forced the daemon/client split and kernel-verified identity. Designing the data plane for
-O(1) up front, and defaulting every failure mode to *fail-safe* (a DNS hiccup keeps the
-previous block rather than silently unblocking), were the decisions that mattered most.
+Most of the architecture fell out of the constraints: "no setuid" and "per-user privacy" forced the daemon/client split and kernel-verified identity. Designing the data plane for O(1) up front, and defaulting every failure mode to *fail-safe* (a DNS hiccup keeps the previous block rather than silently unblocking), were the decisions that mattered most.

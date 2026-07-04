@@ -4,6 +4,7 @@ tagline: A visual dependency graph of TestNG flows — shipped on two IDE platfo
 stack: VS Code + IntelliJ
 tech: [TypeScript, VS Code API, IntelliJ Platform, Java, PSI]
 license: Not yet open-sourced
+repo: https://github.com/WeDontTrack/AutoFlowView
 status: active
 year: '2025'
 featured: true
@@ -23,8 +24,7 @@ highlights:
 ## The problem
 
 Large TestNG suites encode their execution order implicitly through `dependsOnMethods`. <br/>
-Understanding "what runs before what" means tracing annotations by hand. Auto Flow View
-turns that into a diagram you can read at a glance.
+Understanding "what runs before what" means tracing annotations by hand. Auto Flow View turns that into a diagram you can read at a glance.
 
 ## Architecture
 

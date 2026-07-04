@@ -15,9 +15,8 @@ highlights:
   - A learning resource I keep adding to
 ---
 
-**AlgoRythm** is a collection of algorithms presented pseudocode-first, with concrete
-implementations across multiple languages. It's part learning resource, part reference —
-the kind of thing I wish I'd had while drilling DSA in Go and Python.
+**AlgoRythm** is a collection of algorithms presented pseudocode-first, with concrete implementations across multiple languages. 
+It's part learning resource, part reference — the kind of thing I wish I'd had while drilling DSA in Go and Python.
 
 ## Architecture
 
